@@ -1,0 +1,24 @@
+nav.Header.navbar-default {
+  background-color: rgba(122,	125, 183, 1);
+}
+
+nav a.app-link.white {
+  color: white;
+}
+
+.navbar-brand.app-link {
+  text-shadow: 1px 1px rgba(120,120,120,1);
+}
+
+.github-logo {
+  height: 90%;
+  width: 90%;
+  margin-top: -5px;
+}
+
+.user-thumbnail {
+  height: 9%;
+  width: 9%;
+  border-radius: 50%;
+  margin-top: -10px;
+}
