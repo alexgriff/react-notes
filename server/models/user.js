@@ -5,6 +5,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // ^ use Schema to tell mongoose what fields a user has
+const HighlighterSchema = require('./highlighter_schema');
 mongoose.Promise = global.Promise;
 
 // const bcrypt = require('bcrypt-nodejs');
@@ -14,7 +15,8 @@ mongoose.Promise = global.Promise;
 const userSchema = new Schema({
   githubId: Number,
   username: String,
-  avatarUrl: String
+  avatarUrl: String,
+  highlighters: [HighlighterSchema]
 });
 
 userSchema.statics.findOrCreate = function(profile, cb){
@@ -24,7 +26,12 @@ userSchema.statics.findOrCreate = function(profile, cb){
             userObj.username = profile.username;
             userObj.githubId = profile.id;
             userObj.avatarUrl = profile._json.avatar_url;
-            //....
+            userObj.highlighters = [
+              {label: 'Ruby'},
+              {label: 'Javascript'},
+              {label: 'React'}
+            ];
+
             userObj.save(cb);
         }else{
           cb(err,result);

@@ -10,7 +10,6 @@ const Repo = require('./models/repo');
 module.exports = function(app) {
 
   app.get('/', function(req, res) {
-    // seedRepos();
     res.send({something: true})
   });
 
@@ -22,7 +21,7 @@ module.exports = function(app) {
 
   app.get('/users/:id', function(req, res) {
     console.log('user show');
-    User.findOne({_id: req.params.id})
+    User.findById(req.params.id)
       .then( user => {
         res.send(user);
       })
@@ -39,7 +38,6 @@ module.exports = function(app) {
   app.get('/auth/github/callback',
     passport.authenticate('github', {failureRedirect: '/fail'}),
     function(req, res) {
-      console.log('SESSION in auth callback: ', req.session);
       const session = req.session.passport.user;
       res.redirect(`http://localhost:3002?_id=${session.userFromDb._id}&token=${session.accessToken}`)
     });
@@ -47,5 +45,22 @@ module.exports = function(app) {
 
   app.get('/fail', function(req, res) {
     res.send({error: 'how did we get here'});
+  });
+
+  app.post('/users/:id', function(req, res) {
+    
+    const setModifier = {
+      $set: {
+        ['highlighters.' + req.body.highlighterIndex + '.label']: req.body.label
+      }
+    };
+
+    User.findOneAndUpdate({githubId: req.params.id}, setModifier)
+      .then( user => {
+        res.send({user: user})
+      })
+      .catch( error => {
+        res.send({error: error})
+      })
   });
 }
