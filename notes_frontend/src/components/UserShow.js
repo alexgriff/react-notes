@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions'
 import ReposSidebar from './ReposSidebar';
 import RepoShow from './RepoShow';
+import HighlightSelector from './HighlightSelector';
 
 class UserShow extends Component {
 
@@ -13,11 +14,20 @@ class UserShow extends Component {
     }
   }
 
+
+  handleChange(ev) {
+    console.log('in the handle change');
+    console.log(ev.target.value);
+  }
+
   render() {
     return (
-      <div className="row UserShow">
-        <ReposSidebar repos={this.props.repos} />
-        <RepoShow repo={this.props.selectedRepo} />
+      <div className="UserShow">
+        <div className="repo-info-container row">
+          <ReposSidebar repos={this.props.repos} />
+          <RepoShow repo={this.props.selectedRepo} />
+        </div>
+        { this.props.user ? <HighlightSelector /> : null }
       </div>
     );
   }

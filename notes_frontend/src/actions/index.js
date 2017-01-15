@@ -4,7 +4,8 @@ import {
   SIGNOUT_USER,
   FETCH_USER,
   GET_REPOS,
-  SHOW_REPO
+  SHOW_REPO,
+  UPDATE_LABEL
 } from './types';
 import { browserHistory } from 'react-router';
 
@@ -111,5 +112,15 @@ export function showRepo(url, repoName) {
     .catch( error => {
       debugger;
     });
+  }
+}
+
+
+export function handleUpdateLabel(label, index, userId) {
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/users/${userId}`, {highlighterIndex: index, label})
+      .then( response  => {
+        dispatch({type: UPDATE_LABEL, payload: response.data.user})
+      });
   }
 }

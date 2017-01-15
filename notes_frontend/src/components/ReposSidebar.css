@@ -1,9 +1,11 @@
+
+
 .list-group-item.repo-name {
   color: rgba(0, 188, 225, 1);
   font-family: inherit;
 }
 
-.form-control {
+.form-control.sidebar {
   /* css 3 */
 border-radius:15px;
 /* mozilla */
@@ -12,7 +14,7 @@ border-radius:15px;
 -webkit-border-radius:15px;
 }
 
-.input-group-addon{
+.input-group-addon {
   /* css 3 */
 border-radius:15px;
 /* mozilla */

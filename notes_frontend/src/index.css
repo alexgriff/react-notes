@@ -30,3 +30,7 @@ span.highlight {
   margin-top: 20px;
   margin-left: 35%;
 }
+
+.repo-info-container {
+  padding-bottom: 100px;
+}

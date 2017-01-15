@@ -1,0 +1,72 @@
+
+.HighlightSelector {
+  color: #68777d;
+  background-color: #f2f9fc;
+  border: 1px solid #c9e6f2;
+  opacity: 0.98;
+  min-height: 80px;
+  display: flex;
+  -ms-align-items: center;
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.HighlightSelector .btn.btn-default {
+  color: #68777d;
+  background-color: #f2f9fc;
+  border: 1px solid #c9e6f2;
+  border-radius: 3px;
+  z-index: 2;
+  margin-right: 7px;
+}
+
+/*#BEFFB*/
+.HighlightSelector .btn.btn-default.green:focus {
+  outline: none;
+  border: 1px solid #c9e6f2;
+  -webkit-box-shadow:0 0 6px rgb(100, 255, 100);
+  -moz-box-shadow: 0 0 6px rgb(100, 255, 100);
+  box-shadow:0 0 6px rgb(100, 255, 100);
+}
+
+/**/
+.HighlightSelector .btn.btn-default.red:focus {
+  outline: none;
+  border: 1px solid #c9e6f2;
+  -webkit-box-shadow:0 0 6px rgb(250,110,130);
+  -moz-box-shadow: 0 0 6px rgb(250,110,130);
+  box-shadow:0 0 6px rgb(250,110,130);
+}
+
+/*#B1D6FF*/
+.HighlightSelector .btn.btn-default.blue:focus {
+  outline: none;
+  border: 1px solid #c9e6f2;
+  -webkit-box-shadow:0 0 8px rgb(110,175,255);
+  -moz-box-shadow: 0 0 8px rgb(110,175,255);
+  box-shadow:0 0 8px rgb(110,175,255);
+}
+
+.HighlightSelector input.highlighter-field {
+  height: 100%;
+  color: #68777d;
+  background-color: #f2f9fc;
+  border: none;
+}
+
+.HighlightSelector input.highlighter-field:focus {
+  outline:none;
+  box-shadow: none;
+  background: transparent;
+  border-bottom: 2px solid #c9e6f2;
+}
+
+
+.HighlightSelector .highlight-bar {
+  display: table;
+}

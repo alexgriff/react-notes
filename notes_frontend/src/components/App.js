@@ -3,6 +3,7 @@ import Header from './Header';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
+
 // from http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 const getParams = query => {
   if (!query) {
@@ -31,6 +32,7 @@ class App extends Component {
     return (
       <div className="App container-fluid">
         <Header />
+
         {this.props.children}
       </div>
     );

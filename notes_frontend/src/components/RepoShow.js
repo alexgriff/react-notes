@@ -1,5 +1,5 @@
 import React from 'react';
-import HighlightSelector from './HighlightSelector';
+// import HighlightSelector from './HighlightSelector';
 import { Parser } from 'html-to-react';
 
 const JSXify = (html) => {
@@ -13,8 +13,8 @@ const JSXify = (html) => {
 
 export default ({repo}) => {
   return (
-    <div className="col-md-9">
-      <HighlightSelector />
+    <div className="RepoShow col-md-9">
+
       <div className="markdown">
         {JSXify(repo.content)}
       </div>

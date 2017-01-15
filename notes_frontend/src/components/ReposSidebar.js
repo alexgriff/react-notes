@@ -29,14 +29,14 @@ class ReposSidebar extends Component {
     ).slice(0, 50);
 
     return (
-      <div className="col-xs-3">
+      <div className="RepoSidebar col-xs-3">
         <div className="input-group">
 
           <input
             onChange={this.handleChange.bind(this)}
             value={this.state.searchTerm}
             type="text"
-            className="form-control"
+            className="form-control sidebar"
             placeholder="Search your Repos"
             aria-describedby="basic-addon3" />
 
