@@ -21,7 +21,7 @@
   background: #ffb7b7;
 }
 
-.repo-content.red::-moz-selection{
+.repo-content.red *::-moz-selection{
   background: #ffb7b7;
 }
 

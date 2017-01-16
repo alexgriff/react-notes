@@ -25,35 +25,39 @@
   margin-right: 7px;
 }
 
+.HighlightSelector .btn.btn-default:focus {
+  outline: none;
+}
+
 /*#BEFFB0*/
 .HighlightSelector .btn.btn-default.green.focused {
   outline: none;
   border: 1px solid #c9e6f2;
-  -webkit-box-shadow:0 0 6px #beffb9;
-  -moz-box-shadow: 0 0 6px #beffb9;
-  box-shadow:0 0 6px #beffb9;
+  background-color: #e2e5e4;
+  -webkit-box-shadow:0 0 10px #beffb9;
+  -moz-box-shadow: 0 0 10px #beffb9;
+  box-shadow:0 0 10px #beffb9;
 }
 
 /**/
 .HighlightSelector .btn.btn-default.red.focused {
   outline: none;
   border: 1px solid #c9e6f2;
-  -webkit-box-shadow:0 0 6px #ffb7b7;
-  -moz-box-shadow: 0 0 6px #ffb7b7;
-  box-shadow:0 0 6px #ffb7b7;
+  background-color: #e2e5e4;
+  -webkit-box-shadow:0 0 10px #ffb7b7;
+  -moz-box-shadow: 0 0 10px #ffb7b7;
+  box-shadow:0 0 10px #ffb7b7;
 }
 
-.HighlightSelector .btn.btn-default:focus {
-  outline: none;
-}
 
 /*#B1D6FF*/
 .HighlightSelector .btn.btn-default.blue.focused {
   outline: none;
   border: 1px solid #c9e6f2;
-  -webkit-box-shadow:0 0 8px #a0e2ff;
-  -moz-box-shadow: 0 0 8px #a0e2ff;
-  box-shadow:0 0 8px #a0e2ff;
+  background-color: #e2e5e4;
+  -webkit-box-shadow:0 0 10px #a0e2ff;
+  -moz-box-shadow: 0 0 10px #a0e2ff;
+  box-shadow:0 0 10px #a0e2ff;
 }
 
 
@@ -61,9 +65,9 @@
   outline: none;
   color: #beffb9;
   border: 1px solid #c9e6f2;
-  -webkit-box-shadow:0 0 6px #beffb9;
-  -moz-box-shadow: 0 0 6px #beffb9;
-  box-shadow:0 0 6px #beffb9;
+  -webkit-box-shadow:0 0 10px #beffb9;
+  -moz-box-shadow: 0 0 10px #beffb9;
+  box-shadow:0 0 10px #beffb9;
 }
 
 /**/
@@ -71,22 +75,23 @@
   outline: none;
   border: 1px solid #c9e6f2;
   color: #ffb7b7;
-  -webkit-box-shadow:0 0 6px #ffb7b7;
-  -moz-box-shadow: 0 0 6px #ffb7b7;
-  box-shadow:0 0 6px #ffb7b7;
+  -webkit-box-shadow:0 0 10px #ffb7b7;
+  -moz-box-shadow: 0 0 10px #ffb7b7;
+  box-shadow:0 0 10px #ffb7b7;
 }
 
 /*#B1D6FF*/
 .HighlightSelector .save-btn.btn.btn-default.blue:enabled {
   outline: none;
   color: #a0e2ff;
-  border: 1px solid #c9e6f2;
-  -webkit-box-shadow:0 0 8px #a0e2ff;
-  -moz-box-shadow: 0 0 8px #a0e2ff;
-  box-shadow:0 0 8px #a0e2ff;
+  border: none;
+  -webkit-box-shadow:0 0 10px #a0e2ff;
+  -moz-box-shadow: 0 0 10px #a0e2ff;
+  box-shadow:0 0 10px #a0e2ff;
 }
 
 .HighlightSelector .save-btn.btn.btn-default {
+  border: none;
   background-color: #68777d;
   color: #f2f9fc;
 }
