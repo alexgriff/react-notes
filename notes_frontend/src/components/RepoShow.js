@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
+import Text from './Text';
 import { connect } from 'react-redux';
 import { COLORS } from '../constants';
 
 import './RepoShow.css';
 
 class RepoShow extends Component {
-
-  handleMouseUp() {
-    // alert('hi')
-  }
 
   renderContent() {
     const { content } = this.props.repo
@@ -26,10 +23,14 @@ class RepoShow extends Component {
         );
       }
 
-      return React.createElement(
-        node.element,
-        {key: i, onMouseUp: this.handleMouseUp},
-        node.contents)
+      return (
+        <Text
+          element={node.element}
+          key={i}
+          id={i}
+          highlighter={this.props.highlighter}
+          contents={node.contents} />
+        )
     });
   }
 

@@ -6,7 +6,8 @@ import {
   GET_REPOS,
   SHOW_REPO,
   UPDATE_LABEL,
-  HIGHLIGHTER_CLICK
+  HIGHLIGHTER_CLICK,
+  VALIDATE_SELECTION
 } from './types';
 import { browserHistory } from 'react-router';
 import parseMarkdown from '../markdown_parser/markdown_parser';
@@ -123,4 +124,12 @@ export function handleUpdateLabel(label, index, userId) {
 
 export function handleHighlighterClick(index){
   return({type: HIGHLIGHTER_CLICK, payload: index})
+}
+
+export function validateSelection(index) {
+  if (index === -1) {
+    return({type: VALIDATE_SELECTION, payload: false});
+  } else {
+    return({type: VALIDATE_SELECTION, payload: true});
+  }
 }

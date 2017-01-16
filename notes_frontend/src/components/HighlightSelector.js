@@ -9,8 +9,13 @@ import './HighlightSelector.css';
 
 class HighlightSelector extends Component {
 
-  handleButtonClick() {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
 
+  handleClick() {
+    // TODO do something
   }
 
 
@@ -29,6 +34,7 @@ class HighlightSelector extends Component {
           }
         }
       }
+
       return (
         <div key={i} className="highlight-bar" >
           <span className="highlighter-field">
@@ -51,13 +57,14 @@ class HighlightSelector extends Component {
 
   render() {
     const saveBtnColor = this.props.highlighter ? COLORS[this.props.highlighter.index] : null
-
+    
     return (
       <div className="HighlightSelector container-fluid highlight-header">
           { this.renderFields() }
         <button
           className={`save-btn btn btn-default ${saveBtnColor}`}
-          disabled={!this.props.highlighter.focus} >
+          disabled={!this.props.highlighter.validSelection}
+          onClick={this.handleClick} >
             Save Your Highlight
         </button>
       </div>

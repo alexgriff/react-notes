@@ -5,3 +5,4 @@ export const GET_REPOS = "GET_REPOS";
 export const SHOW_REPO = "SHOW_REPO";
 export const UPDATE_LABEL = "UPDATE_LABEL";
 export const HIGHLIGHTER_CLICK = "HIGHLIGHTER_CLICK";
+export const VALIDATE_SELECTION = "VALIDATE_SELECTION";

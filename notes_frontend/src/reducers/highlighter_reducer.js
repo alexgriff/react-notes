@@ -1,25 +1,25 @@
 import {
-  HIGHLIGHTER_CLICK
+  HIGHLIGHTER_CLICK,
+  VALIDATE_SELECTION
 } from '../actions/types';
 
 const defaultState = {
   index: null,
-  focus: false
+  focus: false,
+  validSelection: false
 }
 
 export default function(state=defaultState, action) {
   switch(action.type) {
     case HIGHLIGHTER_CLICK:
-      let focus;
-
       // r u clicking the same button thats already clicked?
       if (action.payload === state.index) {
-        focus = !state.focus;
+        return {...state, ...{index: null, focus: false, validSelection: false}};
       } else {
-        focus = true;
+        return {...state, ...{index: action.payload, focus: true, validSelection: false}};
       }
-
-      return {...state, ...{index: action.payload, focus}};
+    case VALIDATE_SELECTION:
+      return {...state, validSelection: action.payload};
     default:
       return state;
   }
