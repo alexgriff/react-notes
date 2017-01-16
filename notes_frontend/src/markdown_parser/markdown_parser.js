@@ -32,10 +32,6 @@ const markdownParser = markdown => {
     return result;
   };
 
-  const groupTogetherSections = (accum, current) => {
-    return groupCodeSnippets(accum, current);
-  };
-
   const mapStringToObject = text => {
     switch(text[0]) {
       case HEADING_DELIMITER:
@@ -73,7 +69,7 @@ const markdownParser = markdown => {
 
   return markdown.split('\n')
     .filter(removeUnNeeded)
-    .reduce(groupTogetherSections, [])
+    .reduce(groupCodeSnippets, [])
     .map(mapStringToObject);
 }
 
