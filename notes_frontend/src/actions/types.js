@@ -4,5 +4,4 @@ export const FETCH_USER = "FETCH_USER";
 export const GET_REPOS = "GET_REPOS";
 export const SHOW_REPO = "SHOW_REPO";
 export const UPDATE_LABEL = "UPDATE_LABEL";
-export const HIGHLIGHTER_FOCUS = "HIGHLIGHTER_FOCUS";
-export const HIGHLIGHTER_BLUR = "HIGHLIGHTER_BLUR";
+export const HIGHLIGHTER_CLICK = "HIGHLIGHTER_CLICK";

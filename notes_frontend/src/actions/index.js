@@ -6,8 +6,7 @@ import {
   GET_REPOS,
   SHOW_REPO,
   UPDATE_LABEL,
-  HIGHLIGHTER_FOCUS,
-  HIGHLIGHTER_BLUR
+  HIGHLIGHTER_CLICK
 } from './types';
 import { browserHistory } from 'react-router';
 import parseMarkdown from '../markdown_parser/markdown_parser';
@@ -122,10 +121,6 @@ export function handleUpdateLabel(label, index, userId) {
   }
 }
 
-export function handleHighlighterFocus(index){
-  return({type: HIGHLIGHTER_FOCUS, payload: index})
-}
-
-export function handleHighlighterBlur(){
-  return({type: HIGHLIGHTER_BLUR})
+export function handleHighlighterClick(index){
+  return({type: HIGHLIGHTER_CLICK, payload: index})
 }

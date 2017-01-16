@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { COLORS } from '../constants';
 
 import './RepoShow.css';
 
 class RepoShow extends Component {
 
-  handleClick() {
-    alert('hi')
+  handleMouseUp() {
+    // alert('hi')
   }
 
   renderContent() {
@@ -26,15 +28,16 @@ class RepoShow extends Component {
 
       return React.createElement(
         node.element,
-        {key: i, onClick: this.handleClick},
+        {key: i, onMouseUp: this.handleMouseUp},
         node.contents)
     });
   }
 
   render() {
+    const color = this.props.highlighter.focus ? COLORS[this.props.highlighter.index] : 'none'
     return (
-      <div className="RepoShow col-md-9">
-        <div className="repo-content">
+      <div className="RepoShow col-md-9" >
+        <div className={`repo-content ${color}`} >
           {this.renderContent()}
         </div>
       </div>
@@ -43,4 +46,10 @@ class RepoShow extends Component {
 
 }
 
-export default RepoShow
+const mapStateToProps = state => {
+  return {
+    highlighter: state.highlighter
+  };
+};
+
+export default connect(mapStateToProps, ()=>({}))(RepoShow)

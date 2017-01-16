@@ -1,14 +1,25 @@
 import {
-  HIGHLIGHTER_FOCUS,
-  HIGHLIGHTER_BLUR
+  HIGHLIGHTER_CLICK
 } from '../actions/types';
 
-export default function(state={}, action) {
+const defaultState = {
+  index: null,
+  focus: false
+}
+
+export default function(state=defaultState, action) {
   switch(action.type) {
-    case HIGHLIGHTER_FOCUS:
-      return {...state, ...{index: action.payload, focus: true}};
-    case HIGHLIGHTER_BLUR:
-      return {...state, ...{focus: false, index: null}};
+    case HIGHLIGHTER_CLICK:
+      let focus;
+
+      // r u clicking the same button thats already clicked?
+      if (action.payload === state.index) {
+        focus = !state.focus;
+      } else {
+        focus = true;
+      }
+
+      return {...state, ...{index: action.payload, focus}};
     default:
       return state;
   }

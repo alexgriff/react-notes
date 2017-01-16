@@ -3,7 +3,7 @@ const SNIPPET_DELIMITER = 'ç';
 const markdownParser = markdown => {
   let partOfSnippet = false;
 
-  const removeUnNeeded = text => {console.log('0:', text[0]);return text !== '' && text[0] !== '<';}
+  const removeUnNeeded = text => text !== '' && text[0] !== '<';
 
   const groupCodeSnippets = (accum, current) => {
     let result = [...accum, current]

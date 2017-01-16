@@ -1,5 +1,4 @@
 
-
 .repo-content {
   background-color: white;
   font-size: 18px;
@@ -11,4 +10,37 @@
   font-family: sans-serif;
   padding: 5px 20px 5px 20px;
   border-radius:5px;
+  border: 1px solid rgba(122,125,183,0.33);
+}
+
+.repo-content.red *::selection{
+  background: #ffb7b7;
+}
+
+.repo-content.red::-moz-selection{
+  background: #ffb7b7;
+}
+
+.repo-content.green *::selection {
+  background: #beffb9;
+}
+
+.repo-content.green *::-moz-selection {
+  background: #beffb9;
+}
+
+.repo-content.blue *::selection {
+  background: #a0e2ff;
+}
+
+.repo-content.blue *::-moz-selection {
+  background: #a0e2ff;
+}
+
+.repo-content.none *::selection {
+  background: #f0f0f0;
+}
+
+.repo-content.none *::-moz-selection {
+  background: #f0f0f0;
 }
