@@ -2,14 +2,12 @@ import {
   GET_REPOS,
   SHOW_REPO
 } from '../actions/types';
-import showdown from 'showdown';
+
+
 
 const defaultState = {
   repos: [],
-  selectedRepo: {
-    repoName: "",
-    content: ""
-  }
+  selectedRepo: null
 };
 
 export default function(state=defaultState, action) {
@@ -20,13 +18,13 @@ export default function(state=defaultState, action) {
         repos: [...state.repos, ...action.payload]
       };
     case SHOW_REPO:
-      const converter = new showdown.Converter();
-      const html = converter.makeHtml(action.payload.content);
-
-      return {...state, selectedRepo: {
-        repoName: action.payload.repoName,
-        content: html
-      }}
+      const { repoName, content } = action.payload;
+      return {...state,
+        selectedRepo: {
+          repoName,
+          content
+        }
+      };
     default:
       return state;
   }

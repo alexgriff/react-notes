@@ -3,7 +3,7 @@
   color: #68777d;
   background-color: #f2f9fc;
   border: 1px solid #c9e6f2;
-  opacity: 0.98;
+  opacity: 0.97;
   min-height: 80px;
   display: flex;
   -ms-align-items: center;
@@ -51,6 +51,34 @@
   -moz-box-shadow: 0 0 8px rgb(110,175,255);
   box-shadow:0 0 8px rgb(110,175,255);
 }
+
+
+.HighlightSelector .save-btn.btn.btn-default.green:enabled {
+  outline: none;
+  border: 1px solid #c9e6f2;
+  -webkit-box-shadow:0 0 6px rgb(100, 255, 100);
+  -moz-box-shadow: 0 0 6px rgb(100, 255, 100);
+  box-shadow:0 0 6px rgb(100, 255, 100);
+}
+
+/**/
+.HighlightSelector .save-btn.btn.btn-default.red:enabled {
+  outline: none;
+  border: 1px solid #c9e6f2;
+  -webkit-box-shadow:0 0 6px rgb(250,110,130);
+  -moz-box-shadow: 0 0 6px rgb(250,110,130);
+  box-shadow:0 0 6px rgb(250,110,130);
+}
+
+/*#B1D6FF*/
+.HighlightSelector .save-btn.btn.btn-default.blue:enabled {
+  outline: none;
+  border: 1px solid #c9e6f2;
+  -webkit-box-shadow:0 0 8px rgb(110,175,255);
+  -moz-box-shadow: 0 0 8px rgb(110,175,255);
+  box-shadow:0 0 8px rgb(110,175,255);
+}
+
 
 .HighlightSelector input.highlighter-field {
   height: 100%;

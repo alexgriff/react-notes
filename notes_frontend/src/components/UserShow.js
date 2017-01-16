@@ -25,7 +25,9 @@ class UserShow extends Component {
       <div className="UserShow">
         <div className="repo-info-container row">
           <ReposSidebar repos={this.props.repos} />
-          <RepoShow repo={this.props.selectedRepo} />
+          { this.props.selectedRepo
+            ? <RepoShow repo={this.props.selectedRepo} />
+            : null }
         </div>
         { this.props.user ? <HighlightSelector /> : null }
       </div>

@@ -1,23 +1,44 @@
-import React from 'react';
-// import HighlightSelector from './HighlightSelector';
-import { Parser } from 'html-to-react';
+import React, { Component } from 'react';
 
-const JSXify = (html) => {
-  let divWrapper = "<div>";
-  divWrapper += html;
-  divWrapper += "</div>"
+import './RepoShow.css';
 
-  const parser = new Parser();
-  return parser.parse(divWrapper);
-};
+class RepoShow extends Component {
 
-export default ({repo}) => {
-  return (
-    <div className="RepoShow col-md-9">
+  handleClick() {
+    alert('hi')
+  }
 
-      <div className="markdown">
-        {JSXify(repo.content)}
+  renderContent() {
+    const { content } = this.props.repo
+
+    return content.map( (node, i) => {
+
+      if (node.element === "img") {
+        return React.createElement(
+          node.element,
+          { key: i,
+            src: node.contents.src,
+            alt: node.contents.alt
+          },
+          null
+        );
+      }
+
+      return React.createElement(
+        node.element,
+        {key: i, onClick: this.handleClick},
+        node.contents)
+    });
+  }
+
+  render() {
+    return (
+      <div className="RepoShow col-md-9">
+        {this.renderContent()}
       </div>
-    </div>
-  );
+    );
+  }
+
 }
+
+export default RepoShow

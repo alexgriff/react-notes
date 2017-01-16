@@ -5,6 +5,8 @@ import * as actions from '../actions';
 
 import './HighlightSelector.css';
 
+const COLORS = ["red", "blue", "green"]
+
 class HighlightSelector extends Component {
 
 
@@ -13,13 +15,14 @@ class HighlightSelector extends Component {
     const updateLabel = _.debounce((label, index, userId) =>
       {this.props.handleUpdateLabel(label, index, userId)}, 500)
 
-    const colors = ["red", "blue", "green"]
-
     return this.props.highlighters.map( (highlighter, i) => {
       return (
         <div key={i} className="highlight-bar" >
           <span className="highlighter-field">
-            <button className={`btn btn-default ${colors[i]}`}>
+            <button
+              className={`btn btn-default ${COLORS[i]}`}
+              onFocus={ () => this.props.handleHighlighterFocus(i) }
+              onBlur={ () => this.props.handleHighlighterBlur(i) } >
               <span className="glyphicon glyphicon-pencil"></span>
             </button>
           </span>
@@ -35,10 +38,16 @@ class HighlightSelector extends Component {
   }
 
   render() {
+    const saveColor = this.props.highlighter ? COLORS[this.props.highlighter.index] : null
+
     return (
       <div className="HighlightSelector container-fluid highlight-header">
         { this.renderFields() }
-        <button className="btn btn-default" disabled={true} >Save Your Highlight</button>
+        <button
+          className={`save-btn btn btn-default ${saveColor}`}
+          disabled={!this.props.highlighter.focus} >
+            Save Your Highlight
+        </button>
       </div>
     )
   }
@@ -47,7 +56,8 @@ class HighlightSelector extends Component {
 const mapStateToProps = (state) => {
   return {
     userId: state.user.attributes.githubId,
-    highlighters: state.user.attributes.highlighters
+    highlighters: state.user.attributes.highlighters,
+    highlighter: state.highlighter
   }
 }
 

@@ -5,9 +5,12 @@ import {
   FETCH_USER,
   GET_REPOS,
   SHOW_REPO,
-  UPDATE_LABEL
+  UPDATE_LABEL,
+  HIGHLIGHTER_FOCUS,
+  HIGHLIGHTER_BLUR
 } from './types';
 import { browserHistory } from 'react-router';
+import parseMarkdown from '../markdown_parser/markdown_parser';
 
 const ROOT_URL = 'http://localhost:3090';
 
@@ -92,25 +95,19 @@ export function showRepo(url, repoName) {
   return function(dispatch) {
     axios.get(`${url}/readme`)
     .then( response => {
-      if (response.data.download_url) {
-        axios.get(response.data.download_url)
+      axios.get(response.data.download_url)
         .then( markdown => {
-          dispatch({type: SHOW_REPO, payload: {
-            repoName,
-            content: markdown.data
-            }
+          dispatch({
+            type: SHOW_REPO,
+            payload: {
+              repoName,
+              content: parseMarkdown(markdown.data)
+             }
           });
         });
-      } else {
-        dispatch({type: SHOW_REPO, payload: {
-          repoName,
-          content: "This repository does not have a readme.md"
-          }
-        });
-      }
     })
     .catch( error => {
-      debugger;
+      console.log(error);
     });
   }
 }
@@ -123,4 +120,12 @@ export function handleUpdateLabel(label, index, userId) {
         dispatch({type: UPDATE_LABEL, payload: response.data.user})
       });
   }
+}
+
+export function handleHighlighterFocus(index){
+  return({type: HIGHLIGHTER_FOCUS, payload: index})
+}
+
+export function handleHighlighterBlur(){
+  return({type: HIGHLIGHTER_BLUR})
 }
