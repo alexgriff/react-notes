@@ -34,7 +34,9 @@ class RepoShow extends Component {
   render() {
     return (
       <div className="RepoShow col-md-9">
-        {this.renderContent()}
+        <div className="repo-content">
+          {this.renderContent()}
+        </div>
       </div>
     );
   }
