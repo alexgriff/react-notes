@@ -157,6 +157,7 @@ export function saveHighlight(selection, userId, repoId, highlighterIndex) {
         highlighterIndex
       }
     ).then( response => {
+      //TODO i dont yet do anything or dispatch an action here
       console.log(response);
     });
   }

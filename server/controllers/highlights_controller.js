@@ -2,15 +2,17 @@ const Highlight = require('../models/highlight');
 
 module.exports = {
   create(req, res) {
-
-    res.send(req.body)
+    Highlight.create({
+      elementId: req.body.elementId,
+      startIndex: req.body.startIndex,
+      highlighterIndex: req.body.highlighterIndex,
+      text: req.body.text,
+      user: req.body.userId,
+      repo: req.body.repoId
+    }).then( highlight => {
+      res.send(highlight);
+    }).catch( error => {
+      res.send({error: error});
+    });
   }
 }
-
-// req.body =>
-// elementId:4
-// highlighterIndex:2
-// repoId:"587836dc865d1866da65b9d2"
-// startIndex:74
-// text:"noticed it every day you use"
-// userId:"587b95cfd65cae21c2d0d2c0" 
