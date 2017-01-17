@@ -47,8 +47,8 @@ module.exports = function(app) {
     res.send({error: 'how did we get here'});
   });
 
-  app.post('/users/:id', function(req, res) {
-    
+  app.put('/users/:id', function(req, res) {
+
     const setModifier = {
       $set: {
         ['highlighters.' + req.body.highlighterIndex + '.label']: req.body.label
