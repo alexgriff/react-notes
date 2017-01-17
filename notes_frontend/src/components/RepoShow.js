@@ -38,9 +38,24 @@ class RepoShow extends Component {
     const color = this.props.highlighter.focus ? COLORS[this.props.highlighter.index] : 'none'
     return (
       <div className="RepoShow col-md-9" >
+
+        <div className="show-header-container">
+          <div className="info">
+            <span className="name">{this.props.repo.name}</span>
+            <div className="num-highlights">
+              <span className="snippets">
+                You have taken 0 notes from this repository
+              </span>
+              <a className="btn btn-default btn-xs">{'<'}</a>
+              <a className="btn btn-default btn-xs">{'>'}</a>
+            </div>
+          </div>
+        </div>
+
         <div className={`repo-content ${color}`} >
           {this.renderContent()}
         </div>
+
       </div>
     );
   }
@@ -49,7 +64,8 @@ class RepoShow extends Component {
 
 const mapStateToProps = state => {
   return {
-    highlighter: state.highlighter
+    highlighter: state.highlighter,
+    repo: state.repos.selectedRepo
   };
 };
 
