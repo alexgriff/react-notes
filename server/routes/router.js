@@ -9,11 +9,11 @@ CLIENT_URL = 'http://localhost:3002';
 // add route handlers to express
 module.exports = (app) => {
 
-  app.get('/repos', ReposController.index);
+  app.get('/api/repos', ReposController.index);
 
-  app.get('/users/:id', UsersController.show);
+  app.get('/api/users/:id', UsersController.show);
 
-  app.put('/users/:id', UsersController.update);
+  app.put('/api/users/:id', UsersController.update);
 
   app.get('/auth/github',
     passport.authenticate('github'));
