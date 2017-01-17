@@ -10,14 +10,13 @@ const markdownParser = markdown => {
   const removeUnNeeded = text => text !== '' && text[0] !== '<';
 
   const groupCodeSnippets = (accum, current) => {
-    let result = accum
 
     if (partOfSnippet) {
 
       if (current.substr(0,3) !== SNIPPET_START) {
         let snippet = accum[accum.length - 1];
         snippet += (current + '\n');
-        result = [...accum.slice(0,-1), snippet]
+        return [...accum.slice(0,-1), snippet]
       } else {
         partOfSnippet = false;
       }
@@ -26,12 +25,12 @@ const markdownParser = markdown => {
 
       if (current.substr(0,3) === SNIPPET_START) {
         partOfSnippet = true;
-        result = [...accum, SNIPPET_DELIMITER];
+        return [...accum, SNIPPET_DELIMITER];
       }
 
     }
 
-    return result;
+    return accum;
   };
 
   const isBodyText = text => {
@@ -39,32 +38,32 @@ const markdownParser = markdown => {
   }
 
   const groupParagraphs = (accum, current) => {
-    let result = accum;
 
     if(!partOfSnippet) {
 
       if (isBodyText(current)) {
-        result = [...accum, current];
 
         if (partOfParagraphGroup) {
           let currentGroup = accum[accum.length - 1];
           currentGroup += ('\n\n' + current);
-          result = [...accum.slice(0,-1), currentGroup];
+          return [...accum.slice(0,-1), currentGroup];
         } else {
           partOfParagraphGroup = true;
+          return [...accum, current];
         }
 
       } else {
-        partOfParagraphGroup = false;
-
         if (current.substr(0,3) === SNIPPET_START) {
-          result = accum;
+          return accum;
         }
+
+        partOfParagraphGroup = false;
+        return [...accum, current];
       }
 
     }
 
-    return result;
+    return accum;
   };
 
   const groupTogetherSections = (accum, current) => {
