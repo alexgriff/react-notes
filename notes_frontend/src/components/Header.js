@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { API_ROOT } from '../constants';
 import * as actions from '../actions';
 
 import './Header.css';
@@ -49,12 +50,12 @@ class Header extends Component {
 
       return [
         <li key="0" >
-          <a href="http://localhost:3090/auth/github" >
+          <a href={`${API_ROOT}/auth/github`} >
             <img className="github-logo" src="GitHub-Mark-Light-32px.png" alt="Github Logo" />
           </a>
         </li>,
         <li key="1" >
-          <a href="http://localhost:3090/auth/github" className="app-link white">Sign in with Github</a>
+          <a href={`${API_ROOT}/auth/github`} className="app-link white">Sign in with Github</a>
         </li>
       ];
     }

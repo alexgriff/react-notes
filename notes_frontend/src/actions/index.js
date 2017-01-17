@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { API_ROOT } from '../constants';
 import {
   SIGNIN_USER,
   SIGNOUT_USER,
@@ -12,7 +13,6 @@ import {
 import { browserHistory } from 'react-router';
 import parseMarkdown from '../markdown_parser/markdown_parser';
 
-const ROOT_URL = 'http://localhost:3090';
 
 export function signinUser(_id, accessToken) {
   localStorage.setItem('accessToken', accessToken);
@@ -32,7 +32,7 @@ export function signoutUser() {
 export function fetchUser() {
   return function(dispatch) {
     const id = localStorage.getItem('_id');
-    axios.get(`${ROOT_URL}/users/${id}`)
+    axios.get(`${API_ROOT}/api/users/${id}`)
       .then( response => {
         dispatch({type: FETCH_USER, payload: response.data});
       })
@@ -55,7 +55,7 @@ export function fetchUser() {
 //   // inside of one action creator
 //   return function(dispatch) {
 //     // submit email/pw to server <- the API server (not webpack server)
-//   axios.post(`${ROOT_URL}/signin`, { email, password })
+//   axios.post(`${API_ROOT}/api/signin`, { email, password })
 //     .then(response => {
 //       // if request is good...
 //       // - update state to indicate user is authenticated
@@ -78,7 +78,7 @@ export function fetchUser() {
 
 export function getRepos() {
   return function(dispatch) {
-    axios.get(`${ROOT_URL}/repos`)
+    axios.get(`${API_ROOT}/api/repos`)
       .then( response => {
         dispatch({
           type: GET_REPOS,
@@ -115,7 +115,7 @@ export function showRepo(url, repoName) {
 
 export function handleUpdateLabel(label, index, userId) {
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/users/${userId}`, {highlighterIndex: index, label})
+    axios.put(`${API_ROOT}/api/users/${userId}`, {highlighterIndex: index, label})
       .then( response  => {
         dispatch({type: UPDATE_LABEL, payload: response.data.user})
       });

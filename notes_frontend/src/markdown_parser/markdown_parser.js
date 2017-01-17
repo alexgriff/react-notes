@@ -13,20 +13,22 @@ const markdownParser = markdown => {
     let result = accum
 
     if (partOfSnippet) {
+
       if (current.substr(0,3) !== SNIPPET_START) {
         let snippet = accum[accum.length - 1];
         snippet += (current + '\n');
         result = [...accum.slice(0,-1), snippet]
-      }
-    }
-
-    if (current.substr(0,3) === SNIPPET_START) {
-      if(!partOfSnippet) {
-        partOfSnippet = true;
-        result = [...accum, SNIPPET_DELIMITER]
       } else {
         partOfSnippet = false;
       }
+
+    } else {
+
+      if (current.substr(0,3) === SNIPPET_START) {
+        partOfSnippet = true;
+        result = [...accum, SNIPPET_DELIMITER];
+      }
+
     }
 
     return result;
@@ -38,21 +40,26 @@ const markdownParser = markdown => {
 
   const groupParagraphs = (accum, current) => {
     let result = accum;
+
     if(!partOfSnippet) {
-      result = [...accum, current];
+
       if (isBodyText(current)) {
-        if (!partOfParagraphGroup) {
-          partOfParagraphGroup = true;
-        } else {
+        result = [...accum, current];
+
+        if (partOfParagraphGroup) {
           let currentGroup = accum[accum.length - 1];
           currentGroup += ('\n\n' + current);
           result = [...accum.slice(0,-1), currentGroup];
+        } else {
+          partOfParagraphGroup = true;
         }
+
       } else {
+        partOfParagraphGroup = false;
+
         if (current.substr(0,3) === SNIPPET_START) {
           result = accum;
         }
-        partOfParagraphGroup = false;
       }
 
     }

@@ -15,6 +15,7 @@ class HighlightSelector extends Component {
   }
 
   handleClick() {
+    // console.log('clicked!');
     // TODO do something
   }
 
@@ -57,7 +58,7 @@ class HighlightSelector extends Component {
 
   render() {
     const saveBtnColor = this.props.highlighter ? COLORS[this.props.highlighter.index] : null
-    
+
     return (
       <div className="HighlightSelector container-fluid highlight-header">
           { this.renderFields() }
