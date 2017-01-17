@@ -126,7 +126,7 @@ export function handleHighlighterClick(index){
   return({type: HIGHLIGHTER_CLICK, payload: index})
 }
 
-export function validateSelection(startIndex, elementId, highlighterIndex) {
+export function validateSelection(startIndex, elementId, highlighterIndex, text) {
   if (startIndex === -1) {
     return({type: VALIDATE_SELECTION, payload: {valid: false}});
   } else {
@@ -136,8 +136,28 @@ export function validateSelection(startIndex, elementId, highlighterIndex) {
         valid: true,
         elementId,
         highlighterIndex,
-        startIndex
+        startIndex,
+        text
       }
+    });
+  }
+}
+
+
+export function saveHighlight(selection, userId, repoId, highlighterIndex) {
+  return function(dispatch) {
+    axios.post(
+      `${API_ROOT}/api/highlights`,
+      {
+        text: selection.text,
+        startIndex: selection.startIndex,
+        elementId: selection.elementId,
+        userId,
+        repoId,
+        highlighterIndex
+      }
+    ).then( response => {
+      console.log(response);
     });
   }
 }

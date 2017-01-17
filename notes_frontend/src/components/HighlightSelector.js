@@ -15,8 +15,14 @@ class HighlightSelector extends Component {
   }
 
   handleClick() {
-    // console.log('clicked!');
-    // TODO do something
+    const {
+      highlighter,
+      user,
+      selectedRepo,
+      saveHighlight
+    } = this.props;
+
+    saveHighlight(highlighter.selection, user._id, selectedRepo._id, highlighter.index)
   }
 
 

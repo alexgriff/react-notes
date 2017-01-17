@@ -16,7 +16,7 @@ class Text extends Component {
       const selection = window.getSelection().toString();
       if (selection) {
         const startIndex = contents.indexOf(selection);
-        validateSelection(startIndex, elementId, highlighter.index);
+        validateSelection(startIndex, elementId, highlighter.index, selection);
       }
     }
   }
