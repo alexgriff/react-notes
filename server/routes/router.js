@@ -3,18 +3,24 @@ const passport = require('passport');
 
 const UsersController = require('../controllers/users_controller');
 const ReposController = require('../controllers/repos_controller');
+const HighlightsController = require('../controllers/highlights_controller');
 
 CLIENT_URL = 'http://localhost:3002';
 
-// add route handlers to express
 module.exports = (app) => {
 
+  // REPOS
   app.get('/api/repos', ReposController.index);
 
+  // USERS
   app.get('/api/users/:id', UsersController.show);
 
   app.put('/api/users/:id', UsersController.update);
 
+  // HIGHLIGHTS
+  app.post('/api/highlights', HighlightsController.create);
+
+  // AUTH
   app.get('/auth/github',
     passport.authenticate('github'));
 
