@@ -91,16 +91,16 @@ export function getRepos() {
   }
 }
 
-export function showRepo(url, repoName) {
+export function showRepo(repo) {
   return function(dispatch) {
-    axios.get(`${url}/readme`)
+    axios.get(`${repo.url}/readme`)
     .then( response => {
       axios.get(response.data.download_url)
         .then( markdown => {
           dispatch({
             type: SHOW_REPO,
             payload: {
-              repoName,
+              repo,
               content: parseMarkdown(markdown.data)
              }
           });

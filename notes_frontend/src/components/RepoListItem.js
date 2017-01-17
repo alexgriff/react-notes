@@ -5,7 +5,7 @@ import * as actions from '../actions'
 class RepoListItem extends Component {
   handleClick(ev) {
     const { repo, showRepo } = this.props;
-    showRepo(repo.url, repo.name)
+    showRepo(repo)
   }
 
   render() {
@@ -24,4 +24,3 @@ class RepoListItem extends Component {
 }
 
 export default connect(null, actions)(RepoListItem);
-

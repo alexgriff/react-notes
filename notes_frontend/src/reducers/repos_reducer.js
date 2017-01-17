@@ -18,10 +18,10 @@ export default function(state=defaultState, action) {
         repos: [...state.repos, ...action.payload]
       };
     case SHOW_REPO:
-      const { repoName, content } = action.payload;
+      const { repo, content } = action.payload;
       return {...state,
         selectedRepo: {
-          repoName,
+          ...repo,
           content
         }
       };

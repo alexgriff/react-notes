@@ -57,6 +57,7 @@ class HighlightSelector extends Component {
   }
 
   render() {
+    console.log(this.props.selectedRepo);
     const saveBtnColor = this.props.highlighter ? COLORS[this.props.highlighter.index] : null
 
     return (
@@ -77,7 +78,8 @@ const mapStateToProps = (state) => {
   return {
     userId: state.user.attributes.githubId,
     highlighters: state.user.attributes.highlighters,
-    highlighter: state.highlighter
+    highlighter: state.highlighter,
+    selectedRepo: state.repos.selectedRepo
   }
 }
 
