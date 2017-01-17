@@ -5,12 +5,18 @@ import * as actions from '../actions';
 class Text extends Component {
 
   handleMouseUp() {
+    const {
+      highlighter,
+      contents,
+      elementId,
+      validateSelection } = this.props;
+
     // 0 is falsey, this seems hacky
-    if (typeof this.props.highlighter.index === "number") {
+    if (typeof highlighter.index === "number") {
       const selection = window.getSelection().toString();
       if (selection) {
-        const startIndex = this.props.contents.indexOf(selection);
-        this.props.validateSelection(startIndex);
+        const startIndex = contents.indexOf(selection);
+        validateSelection(startIndex, elementId, highlighter.index);
       }
     }
   }
@@ -20,7 +26,9 @@ class Text extends Component {
 
     return React.createElement(
       element,
-      {onMouseUp: this.handleMouseUp.bind(this)},
+      {
+        onMouseUp: this.handleMouseUp.bind(this),
+      },
       contents
     );
   }

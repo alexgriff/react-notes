@@ -26,7 +26,7 @@ class HighlightSelector extends Component {
       {this.props.handleUpdateLabel(label, index, userId)}, 500);
 
 
-    return this.props.highlighters.map( (highlighter, i) => {
+    return this.props.user.highlighters.map( (highlighter, i) => {
       let focused;
       if (this.props.highlighter) {
         if (i === this.props.highlighter.index) {
@@ -57,7 +57,6 @@ class HighlightSelector extends Component {
   }
 
   render() {
-    console.log(this.props.user);
     const saveBtnColor = this.props.highlighter ? COLORS[this.props.highlighter.index] : null
 
     return (
@@ -65,7 +64,7 @@ class HighlightSelector extends Component {
           { this.renderFields() }
         <button
           className={`save-btn btn btn-default ${saveBtnColor}`}
-          disabled={!this.props.highlighter.validSelection}
+          disabled={!this.props.highlighter.selection.valid}
           onClick={this.handleClick} >
             Save Your Highlight
         </button>
@@ -77,8 +76,6 @@ class HighlightSelector extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user.attributes,
-    // userId: state.user.attributes.githubId,
-    highlighters: state.user.attributes.highlighters,
     highlighter: state.highlighter,
     selectedRepo: state.repos.selectedRepo
   }

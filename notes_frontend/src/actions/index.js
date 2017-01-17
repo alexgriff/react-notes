@@ -126,10 +126,18 @@ export function handleHighlighterClick(index){
   return({type: HIGHLIGHTER_CLICK, payload: index})
 }
 
-export function validateSelection(index) {
-  if (index === -1) {
-    return({type: VALIDATE_SELECTION, payload: false});
+export function validateSelection(startIndex, elementId, highlighterIndex) {
+  if (startIndex === -1) {
+    return({type: VALIDATE_SELECTION, payload: {valid: false}});
   } else {
-    return({type: VALIDATE_SELECTION, payload: true});
+    return({
+      type: VALIDATE_SELECTION,
+      payload: {
+        valid: true,
+        elementId,
+        highlighterIndex,
+        startIndex
+      }
+    });
   }
 }

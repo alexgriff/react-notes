@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   auth,
   repos,
   user,
-  highlighter
+  highlighter,
  });
 
 export default rootReducer;

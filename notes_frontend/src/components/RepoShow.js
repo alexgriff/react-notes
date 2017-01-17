@@ -27,7 +27,7 @@ class RepoShow extends Component {
         <Text
           element={node.element}
           key={i}
-          id={i}
+          elementId={i}
           highlighter={this.props.highlighter}
           contents={node.contents} />
         )
