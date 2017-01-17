@@ -50,14 +50,14 @@ class HighlightSelector extends Component {
             className="highlighter-field"
             defaultValue={highlighter.label}
             onChange={ event =>
-              updateLabel(event.target.value, i, this.props.userId)} />
+              updateLabel(event.target.value, i, this.props.user._id)} />
         </div>
       );
     });
   }
 
   render() {
-    console.log(this.props.selectedRepo);
+    console.log(this.props.user);
     const saveBtnColor = this.props.highlighter ? COLORS[this.props.highlighter.index] : null
 
     return (
@@ -76,7 +76,8 @@ class HighlightSelector extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    userId: state.user.attributes.githubId,
+    user: state.user.attributes,
+    // userId: state.user.attributes.githubId,
     highlighters: state.user.attributes.highlighters,
     highlighter: state.highlighter,
     selectedRepo: state.repos.selectedRepo

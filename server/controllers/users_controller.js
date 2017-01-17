@@ -21,7 +21,7 @@ module.exports = {
       }
     };
 
-    User.findOneAndUpdate({githubId: req.params.id}, setModifier)
+    User.findOneAndUpdate({_id: req.params.id}, setModifier)
       .then( user => {
         res.send({user: user})
       })
