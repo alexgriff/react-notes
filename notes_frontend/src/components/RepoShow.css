@@ -71,6 +71,7 @@
 
 div.num-highlights {
   float: right;
+  transform: translateY(-20%);
 }
 
 div.num-highlights button:focus{
@@ -79,6 +80,7 @@ div.num-highlights button:focus{
 
 div.info span.name {
   color: black;
+  font-size: 1em;
 }
 
 span.snippets {

@@ -1,0 +1,30 @@
+.ViewModeToggler {
+  color: #68777d;
+  background-color: #393e4f;
+  border: 1px solid #68777d;
+  opacity: 0.97;
+  min-height: 80px;
+  display: flex;
+  -ms-align-items: center;
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  font-size: 1.25em;
+}
+
+.ViewModeToggler .btn.btn-default {
+  background-color: #68777d;
+  border: none;
+  color: #beffb9;
+  -webkit-box-shadow:0 0 4px #beffb9;
+  -moz-box-shadow: 0 0 4px #beffb9;
+  box-shadow:0 0 4px #beffb9;
+}
+
+.ViewModeToggler .btn.btn-default:focus {
+  outline: none;
+}

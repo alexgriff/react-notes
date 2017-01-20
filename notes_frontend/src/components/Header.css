@@ -2,8 +2,12 @@ nav.Header.navbar-default {
   background-color: rgb(122,125,183);
 }
 
-nav a.app-link.white {
+nav a.app-link.white:enabled {
   color: white;
+}
+
+ul a.app-link.white:hover {
+  color: #c9e6f2;
 }
 
 .navbar-brand.app-link {

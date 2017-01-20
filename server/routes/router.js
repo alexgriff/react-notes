@@ -9,16 +9,20 @@ CLIENT_URL = 'http://localhost:3002';
 
 module.exports = (app) => {
 
-  // REPOS
-  app.get('/api/repos', ReposController.index);
-
   // USERS
+  app.get('/api/users/:userId/repos/:repoId/highlights', HighlightsController.show);
+
+  app.get('/api/users/:userId/repos/:repoId', ReposController.show);
+
   app.get('/api/users/:id', UsersController.show);
 
   app.put('/api/users/:id', UsersController.update);
 
   // HIGHLIGHTS
   app.post('/api/highlights', HighlightsController.create);
+
+  // REPOS
+  app.get('/api/repos', ReposController.index);
 
   // AUTH
   app.get('/auth/github',

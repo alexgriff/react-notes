@@ -20,14 +20,6 @@ class ReposSidebar extends Component {
   }
 
   render() {
-    const { searchTerm } = this.state;
-    const filteredRepos = this.props.repos.filter( repo => (
-      searchTerm ?
-        repo.name.toLowerCase().includes(searchTerm.toLowerCase()) :
-        repo
-      )
-    ).slice(0, 50);
-
     return (
       <div className="RepoSidebar col-xs-3">
         <div className="input-group">
@@ -48,7 +40,9 @@ class ReposSidebar extends Component {
 
         <hr></hr>
 
-        <FilteredRepos filteredRepos={filteredRepos} />
+        <FilteredRepos
+          searchTerm={this.state.searchTerm}
+          repos={this.props.repos} />
 
         { this.props.repos.length ? null : <Spinner /> }
 

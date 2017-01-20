@@ -4,8 +4,8 @@ import * as actions from '../actions'
 
 class RepoListItem extends Component {
   handleClick(ev) {
-    const { repo, showRepo } = this.props;
-    showRepo(repo)
+    const { repo, fetchRepo, user } = this.props;
+    fetchRepo(repo, user._id);
   }
 
   render() {
@@ -13,14 +13,16 @@ class RepoListItem extends Component {
 
     return (
       <li className="list-group-item repo-name">
-          <span
-            onClick={this.handleClick.bind(this)}
-            style={{cursor:'pointer'}} >
-              {repo.name}
-            </span>
+        <span onClick={this.handleClick.bind(this)} >
+          {repo.name}
+        </span>
       </li>
     );
   }
 }
 
-export default connect(null, actions)(RepoListItem);
+const mapStateToProps = state => {
+  return {user: state.user.attributes}
+}
+
+export default connect(mapStateToProps, actions)(RepoListItem);

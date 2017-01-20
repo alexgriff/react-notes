@@ -1,6 +1,7 @@
 const Highlight = require('../models/highlight');
 
 module.exports = {
+
   create(req, res) {
     Highlight.create({
       elementId: req.body.elementId,
@@ -14,5 +15,12 @@ module.exports = {
     }).catch( error => {
       res.send({error: error});
     });
+  },
+
+  show(req, res) {
+    Highlight.find({repo: req.params.repoId, user: req.params.userId})
+      .then(highlights => {
+        res.send({highlights})
+      });
   }
 }

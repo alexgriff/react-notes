@@ -9,7 +9,8 @@ class Text extends Component {
       highlighter,
       contents,
       elementId,
-      validateSelection } = this.props;
+      validateSelection
+    } = this.props;
 
     // 0 is falsey, this seems hacky
     if (typeof highlighter.index === "number") {

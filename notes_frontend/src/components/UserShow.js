@@ -4,6 +4,7 @@ import * as actions from '../actions'
 import ReposSidebar from './ReposSidebar';
 import RepoShow from './RepoShow';
 import HighlightSelector from './HighlightSelector';
+import ViewModeToggler from './ViewModeToggler';
 
 class UserShow extends Component {
 
@@ -20,6 +21,18 @@ class UserShow extends Component {
     console.log(ev.target.value);
   }
 
+  renderBottomToolBar() {
+    if (this.props.user) {
+
+      if (this.props.viewMode) {
+        return <ViewModeToggler onClick={this.props.toggleMode} />
+      } else {
+        return <HighlightSelector />
+      }
+
+    }
+  }
+
   render() {
     return (
       <div className="UserShow">
@@ -29,7 +42,7 @@ class UserShow extends Component {
             ? <RepoShow repo={this.props.selectedRepo} />
             : null }
         </div>
-        { this.props.user ? <HighlightSelector /> : null }
+        { this.renderBottomToolBar() }
       </div>
     );
   }
@@ -40,7 +53,8 @@ const mapStateToProps = (state) => {
     repos: state.repos.repos,
     selectedRepo: state.repos.selectedRepo,
     authenticated: state.auth.authenticated,
-    user: state.user.attributes
+    user: state.user.attributes,
+    viewMode: state.selections.viewMode
   }
 }
 

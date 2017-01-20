@@ -8,7 +8,11 @@ import {
   SHOW_REPO,
   UPDATE_LABEL,
   HIGHLIGHTER_CLICK,
-  VALIDATE_SELECTION
+  VALIDATE_SELECTION,
+  GET_NOTE_COUNT,
+  INCREMENT_NOTE_COUNT,
+  VIEW_USER_REPO_HIGHLIGHTS,
+  LEAVE_VIEW_MODE
 } from './types';
 import { browserHistory } from 'react-router';
 import parseMarkdown from '../markdown_parser/markdown_parser';
@@ -91,7 +95,11 @@ export function getRepos() {
   }
 }
 
-export function showRepo(repo) {
+
+export function fetchRepo(repo, userId) {
+  // const config = {
+  //   headers: {'Authorization': `token ${localStorage.getItem('accessToken')}`}
+  // };
   return function(dispatch) {
     axios.get(`${repo.url}/readme`)
     .then( response => {
@@ -104,6 +112,12 @@ export function showRepo(repo) {
               content: parseMarkdown(markdown.data)
              }
           });
+        })
+        .then(() => {
+          axios.get(`${API_ROOT}/api/users/${userId}/repos/${repo._id}`)
+            .then( response => {
+              dispatch({type: GET_NOTE_COUNT, payload: response.data.count})
+            });
         });
     })
     .catch( error => {
@@ -111,7 +125,6 @@ export function showRepo(repo) {
     });
   }
 }
-
 
 export function handleUpdateLabel(label, index, userId) {
   return function(dispatch) {
@@ -159,6 +172,25 @@ export function saveHighlight(selection, userId, repoId, highlighterIndex) {
     ).then( response => {
       //TODO i dont yet do anything or dispatch an action here
       console.log(response);
+    })
+    .then(() => {
+      dispatch({type: INCREMENT_NOTE_COUNT, payload: repoId});
     });
   }
+}
+
+export function fetchUserRepoHighlights(repoId, userId) {
+  return function(dispatch) {
+    axios.get(`${API_ROOT}/api/users/${userId}/repos/${repoId}/highlights`)
+      .then( response => {
+        dispatch({
+          type: VIEW_USER_REPO_HIGHLIGHTS,
+          payload: response.data.highlights
+        });
+      });
+  }
+}
+
+export function toggleMode() {
+  return {type: LEAVE_VIEW_MODE}
 }

@@ -1,0 +1,32 @@
+span.highlight-note.color2 {
+  background-color: rgba(190,255,185, 0.45);
+  padding: 2px 2px 2px 2px;
+  /* css 3 */
+  border-radius:5px;
+  /* mozilla */
+  -moz-border-radius:5px;
+  /* webkit */
+  -webkit-border-radius:5px;
+}
+
+span.highlight-note.color0 {
+  background-color: rgba(255,183,183,0.45);
+  padding: 2px 2px 2px 2px;
+  /* css 3 */
+  border-radius:5px;
+  /* mozilla */
+  -moz-border-radius:5px;
+  /* webkit */
+  -webkit-border-radius:5px;
+}
+
+span.highlight-note.color1 {
+  background-color: rgba(160,226,255,0.45);
+  padding: 2px 2px 2px 2px;
+  /* css 3 */
+  border-radius:5px;
+  /* mozilla */
+  -moz-border-radius:5px;
+  /* webkit */
+  -webkit-border-radius:5px;
+}

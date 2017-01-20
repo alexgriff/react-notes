@@ -7,7 +7,6 @@ body {
 
 span.highlight {
   background-color: rgba(0, 200, 0, 0.25);
-  padding: 2px 2px 2px 2px;
   /* css 3 */
   border-radius:5px;
   /* mozilla */
@@ -33,4 +32,8 @@ span.highlight {
 
 .repo-info-container {
   padding-bottom: 100px;
+}
+
+li.list-group-item.repo-name span{
+  cursor: pointer;
 }
