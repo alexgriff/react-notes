@@ -172,6 +172,7 @@ export function saveHighlight(selection, userId, repoId, highlighterIndex) {
     ).then( response => {
       //TODO i dont yet do anything or dispatch an action here
       console.log(response);
+      dispatch({type: VALIDATE_SELECTION, payload: {valid: false}})
     })
     .then(() => {
       dispatch({type: INCREMENT_NOTE_COUNT, payload: repoId});

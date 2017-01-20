@@ -49,31 +49,23 @@ const recursiveBuildElements = (result, remaining) => {
     if (remaining[0].text) {
       result.push(remaining.shift().text);
     } else {
-      // find index of end-point for current span tag
       const endIndexForCurrent = remaining.slice(1)
         .findIndex( elem => elem.selectionId === remaining[0].selectionId);
-
-      // cut every elem of array up to that point out of remaining
-      // (destructively)
 
       if (endIndexForCurrent !== -1) {
         let children = remaining.splice(1, endIndexForCurrent);
         let current = remaining.shift();
-        // and call this recursive method with that sub-array
-        // put that result into 'result'
-        // result.push(React.createElement('span', [], recursiveBuildElements([], children)));
-        result.push(<span
+        result.push(
+          <span
           key={current.selectionId}
           className={`highlight-note color${current.highlighterIndex}`} >
             {recursiveBuildElements([], children)}
-          </span>);
+          </span>
+        );
       } else {
-        // when you see an ending span i think just pop it off
-        // remaining and do nada with it
         remaining.shift();
       }
     }
-
     return recursiveBuildElements(result, remaining);
   }
 };
@@ -86,15 +78,12 @@ const buildElements = (noteContent) => {
 
 export default ({element, elementId, selections, contents}) => {
   if(selections.length) {
-
     return React.createElement(
       element,
       {},
       buildElements(prepareContent(contents, selections))
     );
-
   } else {
-
     return React.createElement(
       element,
       {},
