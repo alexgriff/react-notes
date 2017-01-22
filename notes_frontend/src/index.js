@@ -6,7 +6,8 @@ import { Router, Route, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 
 import App from './components/App';
-import UserShow from './components/UserShow';
+import ReposMain from './components/ReposMain';
+import NotesIndex from './components/NotesIndex';
 import reducers from './reducers';
 import { SIGNIN_USER } from './actions/types';
 import './index.css';
@@ -22,13 +23,14 @@ const token = localStorage.getItem('accessToken');
 if (token) {
   // we need to dispatch an action
   store.dispatch({type: SIGNIN_USER});
-} 
+}
 
 ReactDOM.render(
   <Provider store={store} >
     <Router history={browserHistory} >
       <Route path="/" component={App}>
-        <Route path="repos" component={UserShow} />
+        <Route path="repos" component={ReposMain} />
+        <Route path="notes" component={NotesIndex} />
       </Route>
     </Router>
   </Provider>,

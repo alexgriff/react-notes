@@ -6,7 +6,7 @@ import RepoShow from './RepoShow';
 import HighlightSelector from './HighlightSelector';
 import ViewModeToggler from './ViewModeToggler';
 
-class UserShow extends Component {
+class ReposMain extends Component {
 
 
   componentDidUpdate() {
@@ -58,4 +58,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, actions)(UserShow);
+export default connect(mapStateToProps, actions)(ReposMain);

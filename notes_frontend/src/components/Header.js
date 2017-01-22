@@ -75,7 +75,7 @@ class Header extends Component {
           <div className="collapse navbar-collapse">
             <ul className="nav navbar-nav">
               <li><Link to="/repos" className="app-link white" >Repos</Link></li>
-              <li><a className="app-link white" href="#">Notes</a></li>
+              <li><Link to="/notes" className="app-link white" >Notes</Link></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
               { this.renderLinks() }
