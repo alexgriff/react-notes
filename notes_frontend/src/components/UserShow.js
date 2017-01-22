@@ -11,7 +11,7 @@ class UserShow extends Component {
 
   componentDidUpdate() {
     if (this.props.user && !this.props.repos.length) {
-      this.props.getRepos();
+      this.props.fetchAllRepos();
     }
   }
 

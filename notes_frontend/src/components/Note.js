@@ -5,22 +5,26 @@ import './Note.css';
 const buildEndingPoints = selections => {
   return selections.map( sel => (
     {...sel,
-     entryIndex: sel.startIndex + sel.text.length
+     entryIndex: sel.startIndex + sel.text.length,
+     end: true
     })
   );
 }
 
 const concatAndSort = selections => {
   const endPoints = buildEndingPoints(selections);
-  const allStartsAndEnds = [...selections, ...endPoints];
-
-  return allStartsAndEnds.map( sel => {
+  const allStartsAndEnds =
+  [...selections, ...endPoints]
+    .map( (sel, i) => {
     if (!sel.entryIndex) {
       sel.entryIndex = sel.startIndex;
     }
+    sel.uniqueIdForKeyProp = sel._id + i;
+
     return sel;
   })
-  .sort(
+
+  return allStartsAndEnds.sort(
     (a,b) => a.entryIndex > b.entryIndex
   );
 }
@@ -32,13 +36,47 @@ const prepareContent = (content, selections) => {
 
   for(var i = 0; i < sortedSelections.length; i++) {
     let sel = sortedSelections[i];
+    let prev = sortedSelections[i - 1];
     let slicePoint = sel.entryIndex;
+
     prepared.push({text: content.slice(lastSlicePoint, slicePoint)});
-    prepared.push({selectionId: sel._id, highlighterIndex: sel.highlighterIndex});
+
+    // EDGE CASE for
+    // OVERLAPPING *BUT NOT WHOLLY NESTED WITHIN* SPANS
+    if (sel.end && !prev.end && (sel._id !== prev._id)) {
+      // ex: current-sel indicates to end blue span,
+      // but prev says to open a green span
+
+      // close green first
+      prepared.push({
+        selectionId: prev._id,
+        highlighterIndex: prev.highlighterIndex,
+        key: prev.uniqueIdForKeyProp
+      });
+      // then close blue
+      prepared.push({
+        selectionId: sel._id,
+        highlighterIndex: sel.highlighterIndex,
+        key: sel.uniqueIdForKeyProp
+      });
+      // then open a new green
+      prepared.push({
+        selectionId: prev._id,
+        highlighterIndex: prev.highlighterIndex,
+        key: prev.uniqueIdForKeyProp
+      });
+
+    } else {
+      prepared.push({
+        selectionId: sel._id,
+        highlighterIndex: sel.highlighterIndex,
+        key: sel.uniqueIdForKeyProp
+      });
+    }
     lastSlicePoint = slicePoint;
   }
 
-  prepared.push({text: content.slice(lastSlicePoint)})
+  prepared.push({text: content.slice(lastSlicePoint)});
   return prepared;
 }
 
@@ -46,26 +84,29 @@ const recursiveBuildElements = (result, remaining) => {
   if (!remaining.length) {
     return result
   } else {
-    if (remaining[0].text) {
-      result.push(remaining.shift().text);
+    const current = remaining.shift();
+
+    if (current.text || current.text === "") {
+      result.push(current.text);
     } else {
       const endIndexForCurrent = remaining.slice(1)
-        .findIndex( elem => elem.selectionId === remaining[0].selectionId);
+        .findIndex( elem => elem.selectionId === current.selectionId);
 
       if (endIndexForCurrent !== -1) {
-        let children = remaining.splice(1, endIndexForCurrent);
-        let current = remaining.shift();
+        const children = remaining.slice(0, endIndexForCurrent + 1);
+        remaining = remaining.slice(endIndexForCurrent + 1);
+
         result.push(
           <span
-          key={current.selectionId}
-          className={`highlight-note color${current.highlighterIndex}`} >
+            key={current.key}
+            // onMouseEnter={()=>{console.log(this)}}
+            className={`highlight-note color${current.highlighterIndex}`} >
             {recursiveBuildElements([], children)}
           </span>
         );
-      } else {
-        remaining.shift();
       }
     }
+
     return recursiveBuildElements(result, remaining);
   }
 };
@@ -74,19 +115,19 @@ const buildElements = (noteContent) => {
   return recursiveBuildElements([], noteContent)
 }
 
-
-
 export default ({element, elementId, selections, contents}) => {
   if(selections.length) {
+    const preparedContents = prepareContent(contents, selections);
+
     return React.createElement(
       element,
-      {},
-      buildElements(prepareContent(contents, selections))
+      {key: elementId},
+      buildElements(preparedContents)
     );
   } else {
     return React.createElement(
       element,
-      {},
+      {key: elementId},
       contents
     );
   }

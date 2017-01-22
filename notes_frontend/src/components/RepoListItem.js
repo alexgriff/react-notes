@@ -4,8 +4,8 @@ import * as actions from '../actions'
 
 class RepoListItem extends Component {
   handleClick(ev) {
-    const { repo, fetchRepo, user } = this.props;
-    fetchRepo(repo, user._id);
+    const { repo, fetchRepo, user, viewMode } = this.props;
+    fetchRepo(repo, user._id, viewMode);
   }
 
   render() {
@@ -22,7 +22,10 @@ class RepoListItem extends Component {
 }
 
 const mapStateToProps = state => {
-  return {user: state.user.attributes}
+  return {
+    user: state.user.attributes,
+    viewMode: state.selections.viewMode
+  }
 }
 
 export default connect(mapStateToProps, actions)(RepoListItem);

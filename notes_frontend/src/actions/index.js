@@ -80,7 +80,7 @@ export function fetchUser() {
 
 
 
-export function getRepos() {
+export function fetchAllRepos() {
   return function(dispatch) {
     axios.get(`${API_ROOT}/api/repos`)
       .then( response => {
@@ -96,12 +96,13 @@ export function getRepos() {
 }
 
 
-export function fetchRepo(repo, userId) {
-  // const config = {
-  //   headers: {'Authorization': `token ${localStorage.getItem('accessToken')}`}
-  // };
+export function fetchRepo(repo, userId, viewMode) {
+  const config = {
+    headers: {'Authorization': `token ${localStorage.getItem('accessToken')}`}
+  };
+
   return function(dispatch) {
-    axios.get(`${repo.url}/readme`)
+    axios.get(`${repo.url}/readme`, config)
     .then( response => {
       axios.get(response.data.download_url)
         .then( markdown => {
@@ -114,6 +115,17 @@ export function fetchRepo(repo, userId) {
           });
         })
         .then(() => {
+
+          if (viewMode) {
+            axios.get(`${API_ROOT}/api/users/${userId}/repos/${repo._id}/highlights`)
+              .then( response => {
+                dispatch({
+                  type: VIEW_USER_REPO_HIGHLIGHTS,
+                  payload: response.data.highlights
+                });
+              });
+          }
+
           axios.get(`${API_ROOT}/api/users/${userId}/repos/${repo._id}`)
             .then( response => {
               dispatch({type: GET_NOTE_COUNT, payload: response.data.count})
