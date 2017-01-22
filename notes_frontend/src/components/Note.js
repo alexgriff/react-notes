@@ -51,23 +51,20 @@ const prepareContent = (content, selections) => {
       // close green first
       prepared.push({
         selectionId: prev._id,
-        highlighterIndex: prev.highlighterIndex,
-        key: prev.uniqueIdForKeyProp,
-        label: prev.label
+        highlighterIndex: prev.highlighterIndex
       });
       // then close blue
       prepared.push({
         selectionId: sel._id,
-        highlighterIndex: sel.highlighterIndex,
-        key: sel.uniqueIdForKeyProp,
-        label: sel.label
+        highlighterIndex: sel.highlighterIndex
       });
       // then open a new green
       prepared.push({
         selectionId: prev._id,
         highlighterIndex: prev.highlighterIndex,
         key: prev.uniqueIdForKeyProp,
-        label: sel.label
+        label: prev.label,
+        createdAt: prev.createdAt
       });
 
     } else {
@@ -75,7 +72,8 @@ const prepareContent = (content, selections) => {
         selectionId: sel._id,
         highlighterIndex: sel.highlighterIndex,
         key: sel.uniqueIdForKeyProp,
-        label: sel.label
+        label: sel.label,
+        createdAt: sel.createdAt
       });
     }
     lastSlicePoint = slicePoint;
@@ -100,11 +98,13 @@ const recursiveBuildElements = (result, remaining) => {
       if (endIndexForCurrent !== -1) {
         const children = remaining.slice(0, endIndexForCurrent + 1);
         remaining = remaining.slice(endIndexForCurrent + 1);
+        const createdAtText = new Date(current.createdAt)
+          .toLocaleDateString("en-US");
 
         result.push(
           <span className="span-wrapper" key={current.key} >
             <span className="tooltiptext">
-              {current.label}
+              {current.label} {createdAtText}
             </span>
             <span
               className={`highlight-note color${current.highlighterIndex}`} >
