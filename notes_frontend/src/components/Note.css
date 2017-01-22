@@ -9,3 +9,51 @@ span.highlight-note.color0 {
 span.highlight-note.color1 {
   background-color: rgba(160,226,255,0.45);
 }
+
+/* Tooltip styling taken from:
+   http://www.w3schools.com/howto/howto_css_tooltip.asp */
+
+span.span-wrapper {
+  position: relative;
+  display: inline;
+}
+
+/* Tooltip text */
+.span-wrapper .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+/* Tooltip arrow */
+.span-wrapper > :first-child:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.span-wrapper:hover > :first-child {
+    visibility: visible;
+    opacity: 1;
+}

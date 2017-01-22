@@ -9,7 +9,8 @@ module.exports = {
       highlighterIndex: req.body.highlighterIndex,
       text: req.body.text,
       user: req.body.userId,
-      repo: req.body.repoId
+      repo: req.body.repoId,
+      label: req.body.label
     }).then( highlight => {
       res.send(highlight);
     }).catch( error => {

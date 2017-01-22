@@ -169,7 +169,7 @@ export function validateSelection(startIndex, elementId, highlighterIndex, text)
 }
 
 
-export function saveHighlight(selection, userId, repoId, highlighterIndex) {
+export function saveHighlight(selection, userId, repoId, highlighterIndex, label) {
   return function(dispatch) {
     axios.post(
       `${API_ROOT}/api/highlights`,
@@ -179,7 +179,8 @@ export function saveHighlight(selection, userId, repoId, highlighterIndex) {
         elementId: selection.elementId,
         userId,
         repoId,
-        highlighterIndex
+        highlighterIndex,
+        label
       }
     ).then( response => {
       //TODO i dont yet do anything or dispatch an action here

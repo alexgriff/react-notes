@@ -22,7 +22,13 @@ class HighlightSelector extends Component {
       saveHighlight
     } = this.props;
 
-    saveHighlight(highlighter.selection, user._id, selectedRepo._id, highlighter.index)
+    saveHighlight(
+      highlighter.selection,
+      user._id,
+      selectedRepo._id,
+      highlighter.index,
+      user.highlighters[highlighter.index].label
+      )
   }
 
 

@@ -2,6 +2,7 @@ import React from 'react';
 
 import './Note.css';
 
+
 const buildEndingPoints = selections => {
   return selections.map( sel => (
     {...sel,
@@ -51,26 +52,30 @@ const prepareContent = (content, selections) => {
       prepared.push({
         selectionId: prev._id,
         highlighterIndex: prev.highlighterIndex,
-        key: prev.uniqueIdForKeyProp
+        key: prev.uniqueIdForKeyProp,
+        label: prev.label
       });
       // then close blue
       prepared.push({
         selectionId: sel._id,
         highlighterIndex: sel.highlighterIndex,
-        key: sel.uniqueIdForKeyProp
+        key: sel.uniqueIdForKeyProp,
+        label: sel.label
       });
       // then open a new green
       prepared.push({
         selectionId: prev._id,
         highlighterIndex: prev.highlighterIndex,
-        key: prev.uniqueIdForKeyProp
+        key: prev.uniqueIdForKeyProp,
+        label: sel.label
       });
 
     } else {
       prepared.push({
         selectionId: sel._id,
         highlighterIndex: sel.highlighterIndex,
-        key: sel.uniqueIdForKeyProp
+        key: sel.uniqueIdForKeyProp,
+        label: sel.label
       });
     }
     lastSlicePoint = slicePoint;
@@ -97,11 +102,14 @@ const recursiveBuildElements = (result, remaining) => {
         remaining = remaining.slice(endIndexForCurrent + 1);
 
         result.push(
-          <span
-            key={current.key}
-            // onMouseEnter={()=>{console.log(this)}}
-            className={`highlight-note color${current.highlighterIndex}`} >
-            {recursiveBuildElements([], children)}
+          <span className="span-wrapper" key={current.key} >
+            <span className="tooltiptext">
+              {current.label}
+            </span>
+            <span
+              className={`highlight-note color${current.highlighterIndex}`} >
+              {recursiveBuildElements([], children)}
+            </span>
           </span>
         );
       }

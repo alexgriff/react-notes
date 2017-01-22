@@ -8,6 +8,8 @@ const HighlightSchema = new Schema({
   startIndex: Number,
   highlighterIndex: Number,
   text: String,
+  label: String,
+  createdAt : { type : Date, default: Date.now },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'user'
