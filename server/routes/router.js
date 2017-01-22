@@ -5,7 +5,7 @@ const UsersController = require('../controllers/users_controller');
 const ReposController = require('../controllers/repos_controller');
 const HighlightsController = require('../controllers/highlights_controller');
 
-CLIENT_URL = 'http://localhost:3002';
+CLIENT_URL = 'http://localhost:3000';
 
 module.exports = (app) => {
 
