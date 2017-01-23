@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions'
 import ReposSidebar from './ReposSidebar';
 import RepoShow from './RepoShow';
 import HighlightSelector from './HighlightSelector';
 import ViewModeToggler from './ViewModeToggler';
+
+import * as actions from '../../actions'
 
 class ReposMain extends Component {
 

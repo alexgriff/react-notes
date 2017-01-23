@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FilteredRepos from './FilteredRepos';
-import Spinner from './Spinner';
+import Spinner from '../Spinner';
 
 import './ReposSidebar.css';
 

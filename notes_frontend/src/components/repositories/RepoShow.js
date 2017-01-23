@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Text from './Text';
 import Note from './Note';
 import { connect } from 'react-redux';
-import { COLORS } from '../constants';
-import * as actions from '../actions';
+import { COLORS } from '../../constants';
+import * as actions from '../../actions';
 
 import './RepoShow.css';
 

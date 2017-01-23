@@ -6,7 +6,7 @@ import { Router, Route, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 
 import App from './components/App';
-import ReposMain from './components/ReposMain';
+import ReposMain from './components/repositories/ReposMain';
 import NotesIndex from './components/NotesIndex';
 import reducers from './reducers';
 import { SIGNIN_USER } from './actions/types';
