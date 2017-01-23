@@ -14,6 +14,8 @@ module.exports = (app) => {
 
   app.get('/api/users/:userId/repos/:repoId', ReposController.show);
 
+  app.get('/api/users/:id/highlights', HighlightsController.index);
+
   app.get('/api/users/:id', UsersController.show);
 
   app.put('/api/users/:id', UsersController.update);

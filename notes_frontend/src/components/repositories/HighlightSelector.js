@@ -69,7 +69,6 @@ class HighlightSelector extends Component {
   }
 
   render() {
-    console.log(this.props.user.highlighters);
     const saveBtnColor = this.props.highlighter ? COLORS[this.props.highlighter.index] : null
 
     return (

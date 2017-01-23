@@ -9,13 +9,20 @@ import * as actions from '../../actions'
 
 class ReposMain extends Component {
 
-
-  componentDidUpdate() {
+  fetchData() {
     if (this.props.user && !this.props.repos.length) {
       this.props.fetchAllRepos();
     }
   }
 
+  componentDidMount() {
+    this.fetchData();
+  }
+
+
+  componentDidUpdate() {
+    this.fetchData();
+  }
 
   handleChange(ev) {
     console.log('in the handle change');

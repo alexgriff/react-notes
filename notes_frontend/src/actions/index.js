@@ -12,6 +12,7 @@ import {
   GET_NOTE_COUNT,
   INCREMENT_NOTE_COUNT,
   VIEW_USER_REPO_HIGHLIGHTS,
+  VIEW_USER_HIGHLIGHTS,
   LEAVE_VIEW_MODE
 } from './types';
 import { browserHistory } from 'react-router';
@@ -199,6 +200,18 @@ export function fetchUserRepoHighlights(repoId, userId) {
       .then( response => {
         dispatch({
           type: VIEW_USER_REPO_HIGHLIGHTS,
+          payload: response.data.highlights
+        });
+      });
+  }
+}
+
+export function fetchAllUserHighlights(userId) {
+  return function(dispatch) {
+    axios.get(`${API_ROOT}/api/users/${userId}/highlights`)
+      .then( response => {
+        dispatch({
+          type: VIEW_USER_HIGHLIGHTS,
           payload: response.data.highlights
         });
       });

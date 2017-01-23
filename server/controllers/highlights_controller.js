@@ -21,7 +21,16 @@ module.exports = {
   show(req, res) {
     Highlight.find({repo: req.params.repoId, user: req.params.userId})
       .then(highlights => {
-        res.send({highlights})
+        res.send({highlights});
+      });
+  },
+
+  index(req, res) {
+    Highlight.find({user: req.params.id})
+      .populate('repo')
+      .then(highlights => {
+        res.send({highlights});
       });
   }
+
 }

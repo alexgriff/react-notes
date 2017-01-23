@@ -7,7 +7,7 @@ import reduxThunk from 'redux-thunk';
 
 import App from './components/App';
 import ReposMain from './components/repositories/ReposMain';
-import NotesIndex from './components/NotesIndex';
+import NotesIndex from './components/notes/NotesIndex';
 import reducers from './reducers';
 import { SIGNIN_USER } from './actions/types';
 import './index.css';
