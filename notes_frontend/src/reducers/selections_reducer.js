@@ -14,6 +14,7 @@ export default function(state=defaultState, action) {
   switch(action.type) {
     case VIEW_USER_REPO_HIGHLIGHTS:
       return {
+        ...state,
         highlights: action.payload,
         viewMode: true
       };
@@ -24,6 +25,7 @@ export default function(state=defaultState, action) {
       }
     case LEAVE_VIEW_MODE:
       return {
+        ...state,
         highlights: [],
         viewMode: false
       };
