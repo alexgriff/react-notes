@@ -32,6 +32,11 @@ span.highlight {
   margin-right: 50%;
 }
 
+.ajax-loading {
+  margin-left: 50%;
+  margin-right: 50%;
+}
+
 .repo-info-container {
   padding-bottom: 100px;
 }

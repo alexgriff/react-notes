@@ -44,7 +44,12 @@ class ReposMain extends Component {
 
   renderBody() {
     if (this.props.awaitingAJAX) {
-      return <Spinner width={100}/>
+      return (
+        <div>
+          <Spinner width={100}/>
+          <h3 className="ajax-loading">Loading...</h3>
+        </div>
+      );
     } else if (this.props.selectedRepo) {
       return <RepoShow repo={this.props.selectedRepo} />
     }
