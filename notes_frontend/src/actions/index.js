@@ -1,20 +1,6 @@
 import axios from 'axios';
 import { API_ROOT } from '../constants';
-import {
-  SIGNIN_USER,
-  SIGNOUT_USER,
-  FETCH_USER,
-  GET_REPOS,
-  SHOW_REPO,
-  UPDATE_LABEL,
-  HIGHLIGHTER_CLICK,
-  VALIDATE_SELECTION,
-  GET_NOTE_COUNT,
-  INCREMENT_NOTE_COUNT,
-  VIEW_USER_REPO_HIGHLIGHTS,
-  VIEW_USER_HIGHLIGHTS,
-  LEAVE_VIEW_MODE
-} from './types';
+import * as types from './types';
 import { browserHistory } from 'react-router';
 import parseMarkdown from '../markdown_parser/markdown_parser';
 
@@ -23,7 +9,7 @@ export function signinUser(_id, accessToken) {
   localStorage.setItem('accessToken', accessToken);
   localStorage.setItem('_id', _id);
   browserHistory.push('/repos');
-  return {type: SIGNIN_USER};
+  return {type: types.SIGNIN_USER};
 }
 
 
@@ -31,7 +17,7 @@ export function signoutUser() {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('_id');
   browserHistory.push('/');
-  return {type: SIGNOUT_USER};
+  return {type: types.SIGNOUT_USER};
 }
 
 export function fetchUser() {
@@ -39,7 +25,7 @@ export function fetchUser() {
     const id = localStorage.getItem('_id');
     axios.get(`${API_ROOT}/api/users/${id}`)
       .then( response => {
-        dispatch({type: FETCH_USER, payload: response.data});
+        dispatch({type: types.FETCH_USER, payload: response.data});
       })
       .catch( error => {
 
@@ -64,7 +50,7 @@ export function fetchUser() {
 //     .then(response => {
 //       // if request is good...
 //       // - update state to indicate user is authenticated
-//       dispatch({type: AUTH_USER});
+//       dispatch({type: types.AUTH_USER});
 //
 //       // - save the JWT token in localStorage
 //       localStorage.setItem('token', response.data.token);
@@ -86,7 +72,7 @@ export function fetchAllRepos() {
     axios.get(`${API_ROOT}/api/repos`)
       .then( response => {
         dispatch({
-          type: GET_REPOS,
+          type: types.GET_REPOS,
           payload: response.data.repos
         });
       })
@@ -108,7 +94,7 @@ export function fetchRepo(repo, userId, viewMode) {
       axios.get(response.data.download_url)
         .then( markdown => {
           dispatch({
-            type: SHOW_REPO,
+            type: types.SHOW_REPO,
             payload: {
               repo,
               content: parseMarkdown(markdown.data)
@@ -121,7 +107,7 @@ export function fetchRepo(repo, userId, viewMode) {
             axios.get(`${API_ROOT}/api/users/${userId}/repos/${repo._id}/highlights`)
               .then( response => {
                 dispatch({
-                  type: VIEW_USER_REPO_HIGHLIGHTS,
+                  type: types.VIEW_USER_REPO_HIGHLIGHTS,
                   payload: response.data.highlights
                 });
               });
@@ -129,7 +115,7 @@ export function fetchRepo(repo, userId, viewMode) {
 
           axios.get(`${API_ROOT}/api/users/${userId}/repos/${repo._id}`)
             .then( response => {
-              dispatch({type: GET_NOTE_COUNT, payload: response.data.count})
+              dispatch({type: types.GET_NOTE_COUNT, payload: response.data.count})
             });
         });
     })
@@ -143,21 +129,21 @@ export function handleUpdateLabel(label, index, userId) {
   return function(dispatch) {
     axios.put(`${API_ROOT}/api/users/${userId}`, {highlighterIndex: index, label})
       .then( response  => {
-        dispatch({type: UPDATE_LABEL, payload: response.data.user})
+        dispatch({type: types.UPDATE_LABEL, payload: response.data.user})
       });
   }
 }
 
 export function handleHighlighterClick(index){
-  return({type: HIGHLIGHTER_CLICK, payload: index})
+  return({type: types.HIGHLIGHTER_CLICK, payload: index})
 }
 
 export function validateSelection(startIndex, elementId, highlighterIndex, text) {
   if (startIndex === -1) {
-    return({type: VALIDATE_SELECTION, payload: {valid: false}});
+    return({type: types.VALIDATE_SELECTION, payload: {valid: false}});
   } else {
     return({
-      type: VALIDATE_SELECTION,
+      type: types.VALIDATE_SELECTION,
       payload: {
         valid: true,
         elementId,
@@ -186,10 +172,10 @@ export function saveHighlight(selection, userId, repoId, highlighterIndex, label
     ).then( response => {
       //TODO i dont yet do anything or dispatch an action here
       console.log(response);
-      dispatch({type: VALIDATE_SELECTION, payload: {valid: false}})
+      dispatch({type: types.VALIDATE_SELECTION, payload: {valid: false}})
     })
     .then(() => {
-      dispatch({type: INCREMENT_NOTE_COUNT, payload: repoId});
+      dispatch({type: types.INCREMENT_NOTE_COUNT, payload: repoId});
     });
   }
 }
@@ -199,7 +185,7 @@ export function fetchUserRepoHighlights(repoId, userId) {
     axios.get(`${API_ROOT}/api/users/${userId}/repos/${repoId}/highlights`)
       .then( response => {
         dispatch({
-          type: VIEW_USER_REPO_HIGHLIGHTS,
+          type: types.VIEW_USER_REPO_HIGHLIGHTS,
           payload: response.data.highlights
         });
       });
@@ -211,7 +197,7 @@ export function fetchAllUserHighlights(userId) {
     axios.get(`${API_ROOT}/api/users/${userId}/highlights`)
       .then( response => {
         dispatch({
-          type: VIEW_USER_HIGHLIGHTS,
+          type: types.VIEW_USER_HIGHLIGHTS,
           payload: response.data.highlights
         });
       });
@@ -219,5 +205,5 @@ export function fetchAllUserHighlights(userId) {
 }
 
 export function toggleMode() {
-  return {type: LEAVE_VIEW_MODE}
+  return {type: types.LEAVE_VIEW_MODE}
 }
