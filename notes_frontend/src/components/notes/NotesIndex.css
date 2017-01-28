@@ -1,3 +1,8 @@
+.notes-index {
+  padding: 10px 10px 10px 10px;
+  border-radius: 3px 3px 3px 3px;
+  background-color: rgb(202,202,202);
+}
 .card {
   box-shadow: 0 4px 6px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
@@ -19,17 +24,17 @@
 
 .card-title.red {
   background-color: #ffb7b7;
-  border: 1px solid rgb(225, 232, 237);
+  border: 1px solid #ffb7b7;
 }
 
 .card-title.blue {
   background-color: #a0e2ff;
-  border: 1px solid rgb(225, 232, 237);
+  border: 1px solid #a0e2ff;
 }
 
 .card-title.green {
   background-color: #beffb9;
-  border: 1px solid rgb(225, 232, 237);
+  border: 1px solid #beffb9;
 }
 
 .note-text {
@@ -39,4 +44,18 @@
 .card-bottom {
   border: 1px solid rgb(225, 232, 237);
   background-color: rgb(248, 248, 248);
+}
+
+.sort-by {
+  display:flex;
+  justify-content:space-between;
+  color: #68777d;
+  background-color: #f2f9fc;
+  padding: 10px 10px 10px 10px;
+}
+
+.sort-by .btn {
+  flex-basis: 100%;
+  text-align: center;
+  margin: 0 5px 0 5px;
 }

@@ -50,16 +50,48 @@ class NotesIndex extends Component {
     });
   }
 
+  renderDetail() {
+    return <div></div>
+  }
+
+
+  renderSort() {
+    return (
+      <div className="panel panel-info">
+        <div className="panel-heading">
+          <h4 className="panel-title">Sort By</h4>
+        </div>
+        <div className="sort-by panel-body">
+          <button className="btn btn-default">Label</button>
+          <button className="btn btn-default">Repository</button>
+          <button className="btn btn-default">Date</button>
+          <button className="btn btn-default">Color</button>
+          <button className="btn btn-default">Starred</button>
+        </div>
+      </div>
+    );
+  //  return (
+  //    <div className="sort-by">
+  //      Sort by:
+  //      <span className="label label-primary">Label</span>
+  //      <span className="label label-primary">Repository</span>
+  //      <span className="label label-primary">Date</span>
+  //      <span className="label label-primary">Color</span>
+  //    </div>
+  //  )
+  }
+
   render() {
     return (
       <div className="container-fluid NotesIndex">
         <div className="col-md-5">
-          <div className="notes-searchbar">
-            TODO: add Search by time, repo, label
-          </div>
           <div className="notes-index">
+            {this.renderSort() }
             { this.renderNotes() }
           </div>
+        </div>
+        <div className="col-md-7">
+          { this.renderDetail() }
         </div>
       </div>
     );
