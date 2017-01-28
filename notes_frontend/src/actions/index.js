@@ -207,3 +207,7 @@ export function fetchAllUserHighlights(userId) {
 export function toggleMode() {
   return {type: types.LEAVE_VIEW_MODE}
 }
+
+export function ajaxStart() {
+  return {type: types.AJAX_START}
+}

@@ -4,7 +4,8 @@ import * as actions from '../../actions'
 
 class RepoListItem extends Component {
   handleClick(ev) {
-    const { repo, fetchRepo, user, viewMode } = this.props;
+    const { repo, fetchRepo, user, viewMode, ajaxStart } = this.props;
+    ajaxStart();
     fetchRepo(repo, user._id, viewMode);
   }
 

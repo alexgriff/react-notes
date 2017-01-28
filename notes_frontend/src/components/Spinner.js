@@ -1,6 +1,6 @@
 import React from 'react';
 // from http://loading.io/
 
-export default () => {
-  return <img src="svg-loaders/oval.svg" width="50" alt="" className="spinner" />
+export default (props = {width: 50}) => {
+  return <img src="oval.svg" width={props.width} alt="spinner" className="spinner" />
 }

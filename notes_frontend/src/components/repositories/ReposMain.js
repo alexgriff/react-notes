@@ -4,6 +4,7 @@ import ReposSidebar from './ReposSidebar';
 import RepoShow from './RepoShow';
 import HighlightSelector from './HighlightSelector';
 import ViewModeToggler from './ViewModeToggler';
+import Spinner from '../Spinner'
 
 import * as actions from '../../actions'
 
@@ -41,14 +42,22 @@ class ReposMain extends Component {
     }
   }
 
+  renderBody() {
+    if (this.props.awaitingAJAX) {
+      return <Spinner width={100}/>
+    } else if (this.props.selectedRepo) {
+      return <RepoShow repo={this.props.selectedRepo} />
+    }
+  }
+
   render() {
     return (
       <div className="UserShow">
         <div className="repo-info-container row">
           <ReposSidebar repos={this.props.repos} />
-          { this.props.selectedRepo
-            ? <RepoShow repo={this.props.selectedRepo} />
-            : null }
+          {
+            this.renderBody()
+          }
         </div>
         { this.renderBottomToolBar() }
       </div>
@@ -60,6 +69,7 @@ const mapStateToProps = (state) => {
   return {
     repos: state.repos.repos,
     selectedRepo: state.repos.selectedRepo,
+    awaitingAJAX: state.repos.awaitingAJAX,
     authenticated: state.auth.authenticated,
     user: state.user.attributes,
     viewMode: state.selections.viewMode

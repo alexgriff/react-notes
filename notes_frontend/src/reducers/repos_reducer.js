@@ -2,14 +2,16 @@ import {
   GET_REPOS,
   SHOW_REPO,
   GET_NOTE_COUNT,
-  INCREMENT_NOTE_COUNT
+  INCREMENT_NOTE_COUNT,
+  AJAX_START
 } from '../actions/types';
 
 
 
 const defaultState = {
   repos: [],
-  selectedRepo: null
+  selectedRepo: null,
+  awaitingAJAX: false
 };
 
 export default function(state=defaultState, action) {
@@ -23,6 +25,7 @@ export default function(state=defaultState, action) {
       const { repo, content } = action.payload;
       return {
         ...state,
+        awaitingAJAX: false,
         selectedRepo: {
           ...state.selectedRepo,
           ...repo,
@@ -49,6 +52,8 @@ export default function(state=defaultState, action) {
       } else {
         return state;
       }
+    case AJAX_START:
+      return {...state, awaitingAJAX: true}
     default:
       return state;
   }
