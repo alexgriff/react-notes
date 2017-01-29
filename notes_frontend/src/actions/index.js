@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_ROOT } from '../constants';
 import * as types from './types';
 import { browserHistory } from 'react-router';
-import parseMarkdown from '../markdown_parser/markdown_parser';
+import parseMarkdown from '../utilities/markdown_parser';
 
 
 export function signinUser(_id, accessToken) {
