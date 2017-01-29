@@ -30,7 +30,7 @@ The `RepoShow` component found in `src/components/repositories` is responsible f
 A `Note` component is rendered when the user clicks 'View' to see their previous highlights within a reading.  Essentially, it uses the persisted start-indices and calculated end-indices to find the points where `<span>` tags should be inserted into the text. Since inserting the first `<span>` throws off all future index/span-insertion-points there is some involved logic here getting the data in a useful format.  The algorithm can recursively build spans within spans with the children being the text-content `slice`d at the appropriate points.
 
 A `<span>` entirely nested within another `<span>` is not too difficult of an edge-case, but a `<span>` that begins inside of another `<span>` and ends outside is more difficult. Ex:
-<img src="/public/overlap.png" alt="green" style="width: 400px;"/>
+<img src="overlap.png" alt="overlap" style="width: 400px;"/>
 
 This problem is solved by creating two `<span>`s that represent the blue text selection. The red `<span>` opens, then the blue opens, then the blue prematurely closes, and the red closes finishing the red highlight. Then a brand-new span opens and closes to gather the remainder of the blue highlighted text. It is still persisted as one highlight, but displayed across two elements.
 
