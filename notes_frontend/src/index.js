@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import reduxThunk from 'redux-thunk';
 
 import App from './components/App';
 import ReposMain from './components/repositories/ReposMain';
 import NotesIndex from './components/notes/NotesIndex';
 import RequireAuth from './components/RequireAuthentication';
+import Welcome from './components/Welcome'
 
 import reducers from './reducers';
 import { SIGNIN_USER } from './actions/types';
@@ -31,6 +32,7 @@ ReactDOM.render(
   <Provider store={store} >
     <Router history={browserHistory} >
       <Route path="/" component={App}>
+        <IndexRoute component={Welcome} />
         <Route path="repos" component={RequireAuth(ReposMain)} />
         <Route path="notes" component={RequireAuth(NotesIndex)} />
       </Route>

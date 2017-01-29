@@ -1,0 +1,16 @@
+.Welcome {
+  background-color: white;
+  border-radius: 6px;
+  text-align: center;
+  width: 85%;
+}
+
+.sign-up-text{
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.Welcome img {
+  display: block;
+  margin: auto;
+}

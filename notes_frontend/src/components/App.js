@@ -32,7 +32,6 @@ class App extends Component {
     return (
       <div className="App container-fluid">
         <Header />
-
         {this.props.children}
       </div>
     );
