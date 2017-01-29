@@ -10,9 +10,9 @@ This app allows you to save, label, view and organize your notes from the readin
 
 #### Color-code & label your Highlighters
 
-<img src="./public/redMarker.png" alt="red" width="300"/>
-<img src="./public/blueMarker.png" alt="blue" width="300"/>
-<img src="./public/greenMarker.png" alt="green" width="300"/>
+<img src="./public/redMarker.png" alt="red" width="500"/>
+<img src="./public/blueMarker.png" alt="blue" width="500"/>
+<img src="./public/greenMarker.png" alt="green" width="500"/>
 
 #### Save your Notes
 <img src="./public/saveHighlight.png" alt="save" width="600"/>
