@@ -8,7 +8,12 @@ import parseMarkdown from '../utilities/markdown_parser';
 export function signinUser(_id, accessToken) {
   localStorage.setItem('accessToken', accessToken);
   localStorage.setItem('_id', _id);
-  hashHistory.push('/repos');
+  // clear uri of query string
+  let uri = window.location.toString();
+  let clean_uri = uri.substring(0, uri.indexOf("?"));
+  window.history.replaceState({}, document.title, clean_uri);
+  
+  hashHistory.push('/repos')
   return {type: types.SIGNIN_USER};
 }
 

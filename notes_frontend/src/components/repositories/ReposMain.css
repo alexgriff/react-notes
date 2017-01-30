@@ -1,0 +1,13 @@
+.empty-instructions {
+  min-height: 500px;
+  text-align: center;
+}
+.empty-instructions h2 {
+  color: rgb(200,200,200);
+  margin-top: 150px;
+}
+
+.empty-instructions h4 {
+  color: rgb(200,200,200);
+  margin-top: 30px;
+}

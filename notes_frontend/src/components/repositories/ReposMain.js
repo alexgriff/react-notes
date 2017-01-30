@@ -8,6 +8,8 @@ import Spinner from '../Spinner'
 
 import * as actions from '../../actions'
 
+import './ReposMain.css'
+
 class ReposMain extends Component {
 
   fetchData() {
@@ -52,6 +54,20 @@ class ReposMain extends Component {
       );
     } else if (this.props.selectedRepo) {
       return <RepoShow repo={this.props.selectedRepo} />
+    } else {
+      return (
+        <div className="container-fluid col-md-9">
+          <div className="well empty-instructions">
+            <h2>
+              Find and click on the name of a repository to get started taking notes
+            </h2>
+            <h4>
+              The highlight selector at the bottom of the screen provides three different colored highlighters. You can edit the labels of each to organize your notes.
+            </h4>
+            <h4>Select a highlighter, select the text of a reading, if the selection is valid you will be able to save your highlight</h4>
+          </div>
+        </div>
+      );
     }
   }
 
