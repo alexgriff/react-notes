@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import reduxThunk from 'redux-thunk';
 
 import App from './components/App';
@@ -30,7 +30,7 @@ if (token) {
 
 ReactDOM.render(
   <Provider store={store} >
-    <Router history={browserHistory} >
+    <Router history={hashHistory} >
       <Route path="/" component={App}>
         <IndexRoute component={Welcome} />
         <Route path="repos" component={RequireAuth(ReposMain)} />

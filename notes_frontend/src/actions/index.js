@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { API_ROOT } from '../constants';
 import * as types from './types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import parseMarkdown from '../utilities/markdown_parser';
 
 
 export function signinUser(_id, accessToken) {
   localStorage.setItem('accessToken', accessToken);
   localStorage.setItem('_id', _id);
-  browserHistory.push('/repos');
+  hashHistory.push('/repos');
   return {type: types.SIGNIN_USER};
 }
 
@@ -16,7 +16,7 @@ export function signinUser(_id, accessToken) {
 export function signoutUser() {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('_id');
-  browserHistory.push('/');
+  hashHistory.push('/');
   return {type: types.SIGNOUT_USER};
 }
 
@@ -56,7 +56,7 @@ export function fetchUser() {
 //       localStorage.setItem('token', response.data.token);
 //
 //       // - redirect to the route '/feature' (using react-router)
-//       browserHistory.push('/feature');
+//       hashHistory.push('/feature');
 //     })
 //     .catch(() => {
 //       // if its bad
