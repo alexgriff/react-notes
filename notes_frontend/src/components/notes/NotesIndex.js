@@ -70,15 +70,6 @@ class NotesIndex extends Component {
         </div>
       </div>
     );
-  //  return (
-  //    <div className="sort-by">
-  //      Sort by:
-  //      <span className="label label-primary">Label</span>
-  //      <span className="label label-primary">Repository</span>
-  //      <span className="label label-primary">Date</span>
-  //      <span className="label label-primary">Color</span>
-  //    </div>
-  //  )
   }
 
   render() {
