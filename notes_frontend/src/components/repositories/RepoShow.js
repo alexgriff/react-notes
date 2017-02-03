@@ -79,6 +79,7 @@ class RepoShow extends Component {
       // render Note components
       const elementSelections = this.props.selections.highlights
         .filter( selection => selection.elementId === i);
+
       return (
         <Note
           element={node.element}
@@ -91,15 +92,24 @@ class RepoShow extends Component {
   }
 
   render() {
-    const color = this.props.highlighter.focus ? COLORS[this.props.highlighter.index] : 'none'
+    let color;
+
+    if (this.props.highlighter.focus) {
+      color = COLORS[this.props.highlighter.index] ;
+    } else {
+      color = 'none';
+    }
+
     return (
       <div className="RepoShow col-md-9" >
 
         {this.renderHighlightInfo()}
 
         <div className={`repo-content ${color}`} >
-          { this.props.selections.viewMode ?
-            this.renderViewMode() : this.renderCreateMode()
+          {
+            this.props.selections.viewMode ?
+            this.renderViewMode() :
+            this.renderCreateMode()
           }
         </div>
 

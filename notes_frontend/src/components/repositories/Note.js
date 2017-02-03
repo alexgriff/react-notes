@@ -125,6 +125,13 @@ const buildElements = (noteContent) => {
 
 export default ({element, elementId, selections, contents}) => {
   if(selections.length) {
+
+    // preparedContent looks something like:
+    // [ {text: '...'},
+    //   {entryIndex: 12, selectionId: 4, highlighterInfo: '', createdAt: ''},
+    //   {text: '...'},
+    //   {entryIndex: 40, selectionId: 4, ...},
+    //    ...]
     const preparedContents = prepareContent(contents, selections);
 
     return React.createElement(
@@ -133,6 +140,7 @@ export default ({element, elementId, selections, contents}) => {
       buildElements(preparedContents)
     );
   } else {
+
     return React.createElement(
       element,
       {key: elementId},

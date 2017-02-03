@@ -12,7 +12,7 @@ export function signinUser(_id, accessToken) {
   let uri = window.location.toString();
   let clean_uri = uri.substring(0, uri.indexOf("?"));
   window.history.replaceState({}, document.title, clean_uri);
-  
+
   hashHistory.push('/repos')
   return {type: types.SIGNIN_USER};
 }
@@ -31,6 +31,11 @@ export function fetchUser() {
     axios.get(`${API_ROOT}/api/users/${id}`)
       .then( response => {
         dispatch({type: types.FETCH_USER, payload: response.data});
+
+        if (!response.data.suffix) {
+          hashHistory.push('/profile');
+        }
+
       })
       .catch( error => {
 
@@ -72,9 +77,9 @@ export function fetchUser() {
 
 
 
-export function fetchAllRepos() {
+export function fetchAllRepos(suffix) {
   return function(dispatch) {
-    axios.get(`${API_ROOT}/api/repos`)
+    axios.get(`${API_ROOT}/api/repos?suffix=${suffix}`)
       .then( response => {
         dispatch({
           type: types.GET_REPOS,
@@ -82,7 +87,7 @@ export function fetchAllRepos() {
         });
       })
       .catch( error => {
-        debugger;
+        // debugger;
       })
   }
 }
@@ -160,7 +165,6 @@ export function validateSelection(startIndex, elementId, highlighterIndex, text)
   }
 }
 
-
 export function saveHighlight(selection, userId, repoId, highlighterIndex, label) {
   return function(dispatch) {
     axios.post(
@@ -215,4 +219,32 @@ export function toggleMode() {
 
 export function ajaxStart() {
   return {type: types.AJAX_START}
+}
+
+export function initRepos(suffix, userId) {
+  return function(dispatch) {
+    dispatch({type: types.AJAX_START})
+
+    axios.put(`${API_ROOT}/api/users/${userId}`, { suffix })
+      .then( response => {
+        axios.get(`${API_ROOT}/api/repos?suffix=${response.data.user.suffix}`);
+
+        dispatch({type: types.UPDATE_SUFFIX, payload: suffix});
+        hashHistory.push('/repos');
+    });
+  };
+}
+
+
+export function updateRepos(suffix) {
+  return function(dispatch) {
+    dispatch({type: types.AJAX_START});
+
+    axios.put(`${API_ROOT}/api/repos`, { suffix })
+      .then( response => {
+
+        dispatch({type: types.UPDATE_SUFFIX, payload: suffix});
+        hashHistory.push('/repos');
+      })
+  }
 }

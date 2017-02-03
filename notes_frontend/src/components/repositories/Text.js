@@ -12,7 +12,7 @@ class Text extends Component {
       validateSelection
     } = this.props;
 
-    // 0 is falsey, this seems hacky
+    // 0 is falsey, so have to do this
     if (typeof highlighter.index === "number") {
       const selection = window.getSelection().toString();
       if (selection) {
@@ -27,9 +27,7 @@ class Text extends Component {
 
     return React.createElement(
       element,
-      {
-        onMouseUp: this.handleMouseUp.bind(this),
-      },
+      {onMouseUp: this.handleMouseUp.bind(this)},
       contents
     );
   }

@@ -13,9 +13,12 @@ import './ReposMain.css'
 class ReposMain extends Component {
 
   fetchData() {
-    if (this.props.user && !this.props.repos.length) {
-      this.props.fetchAllRepos();
+    const { user, repos, fetchAllRepos } = this.props;
+
+    if (user && !repos.length) {
+      fetchAllRepos(user.suffix);
     }
+
   }
 
   componentDidMount() {
@@ -25,11 +28,6 @@ class ReposMain extends Component {
 
   componentDidUpdate() {
     this.fetchData();
-  }
-
-  handleChange(ev) {
-    console.log('in the handle change');
-    console.log(ev.target.value);
   }
 
   renderBottomToolBar() {

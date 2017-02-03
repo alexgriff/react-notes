@@ -32,10 +32,10 @@ class Header extends Component {
 
       return [
         <li key="0" >
-          <a href="#" >
+          <Link to="/profile" >
             <img className="user-thumbnail navbar-right"
               src={this.props.user.avatarUrl} alt="User" />
-          </a>
+          </Link>
         </li>,
         <li key="1" >
           <a href="#"
@@ -76,6 +76,7 @@ class Header extends Component {
             <ul className="nav navbar-nav">
               <li><Link to="/repos" className="app-link white" >Repos</Link></li>
               <li><Link to="/notes" className="app-link white" >Notes</Link></li>
+              <li><Link to="/profile" className="app-link white" >Profile</Link></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
               { this.renderLinks() }

@@ -10,6 +10,7 @@ import ReposMain from './components/repositories/ReposMain';
 import NotesIndex from './components/notes/NotesIndex';
 import RequireAuth from './components/RequireAuthentication';
 import Welcome from './components/Welcome'
+import UserProfile from './components/users/UserProfile';
 
 import reducers from './reducers';
 import { SIGNIN_USER } from './actions/types';
@@ -35,6 +36,7 @@ ReactDOM.render(
         <IndexRoute component={Welcome} />
         <Route path="repos" component={RequireAuth(ReposMain)} />
         <Route path="notes" component={RequireAuth(NotesIndex)} />
+        <Route path="profile" component={RequireAuth(UserProfile)} />
       </Route>
     </Router>
   </Provider>,

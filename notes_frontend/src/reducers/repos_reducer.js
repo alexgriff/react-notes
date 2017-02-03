@@ -3,7 +3,8 @@ import {
   SHOW_REPO,
   GET_NOTE_COUNT,
   INCREMENT_NOTE_COUNT,
-  AJAX_START
+  AJAX_START,
+  UPDATE_SUFFIX
 } from '../actions/types';
 
 
@@ -19,6 +20,7 @@ export default function(state=defaultState, action) {
     case GET_REPOS:
       return {
         ...state,
+        awaitingAJAX: false,
         repos: [...state.repos, ...action.payload]
       };
     case SHOW_REPO:
@@ -54,6 +56,8 @@ export default function(state=defaultState, action) {
       }
     case AJAX_START:
       return {...state, awaitingAJAX: true}
+    case UPDATE_SUFFIX:
+      return {...state, repos: [], awaitingAJAX: false}
     default:
       return state;
   }
